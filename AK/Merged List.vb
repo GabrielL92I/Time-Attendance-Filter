@@ -721,7 +721,7 @@ Public Class Merged_List
                     totalHours1 = 0
                     totalMinutes1 = 0
 
-
+                    '
 
                     Dim countsun As Integer = 0
                     Dim countsat As Integer = 0
