@@ -651,6 +651,10 @@ Public Class Form1
                              totalHours1 += oItem.Split(" "c)(3).Split(":")(0)
                              totalMinutes1 += oItem.Split(" "c)(3).Split(":")(1)
                              totalseconds1 += oItem.Split(" "c)(3).Split(":")(2)
+
+
+
+
                          End If
                      End If
                  Next oItem
@@ -1010,6 +1014,9 @@ Public Class Form1
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Borders.LineStyle = XlLineStyle.xlContinuous
                                 'xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(2) & " " & oItem.Split(" "c)(3)
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(3)
+
+
+
 
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("B1").Offset(OffS1, 0).Value = oItem.Split(" "c)(2).Split("-"c)(1) & "/" & oItem.Split(" "c)(2).Split("-"c)(2) & "/" & oItem.Split(" "c)(2).Split("-"c)(0)
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("B1").Offset(OffS1, 0).HorizontalAlignment = 2
