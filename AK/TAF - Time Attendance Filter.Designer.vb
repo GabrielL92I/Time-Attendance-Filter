@@ -438,7 +438,7 @@ Partial Class Form1
         '
         Me.Label23.AutoSize = True
         Me.Label23.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label23.Location = New System.Drawing.Point(61, 72)
+        Me.Label23.Location = New System.Drawing.Point(4, 72)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(65, 13)
         Me.Label23.TabIndex = 71
@@ -469,7 +469,7 @@ Partial Class Form1
         '
         'TextBox4
         '
-        Me.TextBox4.Location = New System.Drawing.Point(128, 67)
+        Me.TextBox4.Location = New System.Drawing.Point(71, 67)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(80, 23)
         Me.TextBox4.TabIndex = 70
