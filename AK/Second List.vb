@@ -10,22 +10,12 @@ Public Class Second_List
     Dim xlApp As Application
     Dim xlBook As Workbook
     Dim xlSheet As Worksheet
-
-
-
-
-
-
     Private Sub ListBox5_DoubleClick(sender As Object, e As EventArgs) Handles ListBox5.DoubleClick
         If ListBox5.SelectedIndex >= 0 Then
-
             ListBox5.SetSelected(ListBox5.SelectedIndex, False)
         Else
-
         End If
     End Sub
-
-
     Private Sub ListBox5_MouseDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles ListBox5.MouseDown
         If e.Button = Forms.MouseButtons.Right And Not ListBox5.SelectedIndex = -1 Then
             ContextMenuStrip1.Items(1).Visible = True
@@ -35,7 +25,6 @@ Public Class Second_List
             ContextMenuStrip1.Items(1).Visible = False
         End If
     End Sub
-
     Private Sub ListBox5_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles ListBox5.DragEnter
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             e.Effect = DragDropEffects.All
@@ -46,39 +35,26 @@ Public Class Second_List
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             Dim MyFiles() As String
             Dim i As Integer
-
             ' Assign the files to an array.
             MyFiles = e.Data.GetData(DataFormats.FileDrop)
             ' Loop through the array and add the files to the list.
             For i = 0 To MyFiles.Length - 1
                 path = (MyFiles(i))
             Next
-
             Dim sr As StreamReader = New StreamReader(path)
             Dim strLine As String
             Do While sr.Peek() >= 0
-
                 strLine = sr.ReadLine
-
                 If ListBox5.Items.Contains(strLine) Then
-
                 Else
                     ListBox5.Items.Add(strLine)
                 End If
-
-
-
             Loop
             sr.Close()
         End If
         Label17.Text = "(" & ListBox5.Items.Count.ToString & ")"
     End Sub
-
-
     Private Sub Second_List_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-
-
         System.Windows.Forms.Control.CheckForIllegalCrossThreadCalls = False
         Dim countsun As Integer = 0
         Dim countsat As Integer = 0
@@ -97,8 +73,6 @@ Public Class Second_List
             End If
         Next
         Label21.Text = "(" & nonholiday & ")"
-
-
         If CInt(DateTimePicker1.Value.ToString.Split("/"c)(1)) > 1 Or CInt(DateTimePicker2.Value.ToString.Split("/"c)(1)) < 30 Then
             OriginRadioButton1.Checked = True
             OriginRadioButton2.Enabled = False
@@ -136,10 +110,7 @@ Public Class Second_List
         End If
         ListBox4.Sorted = True
         ListBox5.Sorted = True
-
-
         If My.Settings.list.Count = 0 Then
-
         Else
             Dim strings1(My.Settings.list.Count - 1) As String
             My.Settings.list.CopyTo(strings1, 0)
@@ -148,28 +119,19 @@ Public Class Second_List
             Else
                 ListBox5.Items.AddRange(strings1)
             End If
-
         End If
-
-
-
-
-
         Label17.Text = "(" & ListBox5.Items.Count.ToString & ")"
         Label17.ForeColor = Color.ForestGreen
-        'Label5.Text = Label17.Text
         DateTimePicker1.Format = DateTimePickerFormat.Custom
         DateTimePicker1.CustomFormat = "yyyy-MM-dd"
         DateTimePicker2.Format = DateTimePickerFormat.Custom
         DateTimePicker2.CustomFormat = "yyyy-MM-dd"
         DateTimePicker1.Value = Form1.DateTimePicker1.Value
         DateTimePicker2.Value = Form1.DateTimePicker2.Value
-
         If Form1.OriginCheckBox2.Checked = True Then
             OriginCheckBox2.Checked = True
             TextBox2.Text = Form1.TextBox2.Text
             TextBox2.Enabled = True
-
         Else
             OriginCheckBox2.Checked = False
             TextBox2.Text = ""
@@ -189,24 +151,14 @@ Public Class Second_List
         Next
         Return lst
     End Function
-
-
-
-
-
     Private Sub Second_List_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         Dim strings(ListBox5.Items.Count - 1) As String
         ListBox5.Items.CopyTo(strings, 0)
         My.Settings.list = New Specialized.StringCollection
         My.Settings.list.AddRange(strings)
         My.Settings.Save()
-
         Form1.WindowState = FormWindowState.Normal
         Form1.OriginCheckBox4.Checked = False
-    End Sub
-
-    Private Sub Button4_Click(sender As Object, e As EventArgs)
-
     End Sub
     Public Sub ReleaseObject(ByVal obj As Object)
         Try
@@ -218,13 +170,9 @@ Public Class Second_List
             GC.Collect()
         End Try
     End Sub
-
     Dim st, sm As String
     Private ReadOnly x As String
-
     Dim totalTime1
-
-
     Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
         If ListBox5.SelectedIndex = -1 Then
             MsgBox("Select the user to remove first!", MsgBoxStyle.Information)
@@ -233,39 +181,20 @@ Public Class Second_List
             Label17.Text = "(" & ListBox5.Items.Count.ToString & ")"
         End If
     End Sub
-
     Private Sub AddEmployeeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddEmployeeToolStripMenuItem.Click
         Dim StatusDate As String
         StatusDate = InputBox("Enter the employee name here", "Employee Name", "")
-
         If StatusDate = "" Then
-            'MsgBox("Enter person name and surname first!", MsgBoxStyle.Information)
-            ' Exit Sub
-
         Else
-
             ListBox5.Items.Add(StatusDate)
-
             Label17.Text = "(" & ListBox5.Items.Count.ToString & ")"
-
-
         End If
-
-
-
-
-
-
-
     End Sub
-
     Private Sub ClearListToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearListToolStripMenuItem.Click
         ListBox5.Items.Clear()
         Label17.Text = "(" & ListBox5.Items.Count.ToString & ")"
     End Sub
-
     Private Sub ExportListToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportListToolStripMenuItem.Click
-
         SaveFileDialog1.Filter = "TXT Files (*.txt*)|*.txt"
         If SaveFileDialog1.ShowDialog = Forms.DialogResult.OK _
        Then
@@ -275,30 +204,16 @@ Public Class Second_List
             Next
             SW.Close()
             MsgBox("List Exported!", MsgBoxStyle.Information)
-
         End If
-
-
     End Sub
-
-
     Dim fdate As String
     Dim y As String
-
-
-
     Private Sub Label23_Click(sender As Object, e As EventArgs) Handles Label23.Click
         MsgBox("Enter the date format that is shown in the unformatted list!", MsgBoxStyle.Information)
     End Sub
-
     Private Sub Label14_Click(sender As Object, e As EventArgs) Handles Label14.Click
         MsgBox("Working days based on the date range you choose!", MsgBoxStyle.Information)
     End Sub
-
-    Private Sub OriginRadioButton1_CheckedChanged(sender As Object) Handles OriginRadioButton1.CheckedChanged
-
-    End Sub
-
     Private Sub OriginButton4_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles OriginButton4.DragEnter
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             e.Effect = DragDropEffects.Copy
@@ -317,13 +232,8 @@ Public Class Second_List
         Label13.Text = "File loaded!"
         Label19.Text = shkurt
         Label19.ForeColor = Color.ForestGreen
-
         Label13.ForeColor = Color.ForestGreen
-
     End Sub
-
-
-
     Private Sub OriginButton3_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles OriginButton3.DragEnter
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             e.Effect = DragDropEffects.Copy
@@ -340,11 +250,7 @@ Public Class Second_List
         Dim shkurt1 As String = pth1.Substring(pth1.LastIndexOf("\")).Replace("\", "")
         Label25.Text = Label9.Text
         Label9.Text = shkurt1
-
         Label9.ForeColor = Color.ForestGreen
-
-
-
         Dim lines() As String = IO.File.ReadAllLines(Label8.Text)
         Dim x, y, z As String
         Dim largestday As Integer = Integer.MinValue
@@ -371,12 +277,7 @@ Public Class Second_List
         DateTimePicker2.Value = enddt
         DateTimePicker2.Enabled = True
         DateTimePicker1.Enabled = True
-
-
     End Sub
-
-
-
     Private Sub OriginButton3_Click(sender As Object, e As EventArgs) Handles OriginButton3.Click
         Dim open As New OpenFileDialog With {
           .Filter = "Excel File(*.xls,.xlsx*)|*.xls*"
@@ -385,29 +286,21 @@ Public Class Second_List
             Label9.Text = (open.FileName)
             Dim strFilename As String
             strFilename = Trim(Label9.Text)
-
             Dim shkurt1 As String = strFilename.Substring(strFilename.LastIndexOf("\")).Replace("\", "")
             Label25.Text = Label9.Text
             Label9.Text = shkurt1
-
             Label9.ForeColor = Color.ForestGreen
         End If
     End Sub
-
-
-
     Private Sub OriginCheckBox2_CheckedChanged(sender As Object) Handles OriginCheckBox2.CheckedChanged
         If OriginCheckBox2.Checked = True Then
             TextBox2.Enabled = True
-
         Else
             TextBox2.Enabled = False
             TextBox2.Text = ""
         End If
     End Sub
-
     Private Sub OriginButton5_Click(sender As Object, e As EventArgs) Handles OriginButton5.Click
-
         Dim thread As New Thread(
  Sub()
      If Label19.Text = "-" Then
@@ -415,7 +308,6 @@ Public Class Second_List
      Else
          Dim readingFile As System.IO.StreamReader = New System.IO.StreamReader(Label8.Text)
          Dim readingLine As String = readingFile.ReadLine()
-
          readingFile.Close()
          If OriginCheckBox2.Checked = True Then
              ListBox1.Items.Clear()
@@ -429,15 +321,6 @@ Public Class Second_List
              Dim ending As DateTime = Format(DateTimePicker2.Value.Date.ToString("yyyy/MM/dd"))
              Dim dates As String() = Enumerable.Range(0, 1 + ending.Subtract(starting).Days).[Select](Function(i) starting.AddDays(i).ToString("yyyy-MM-dd")).ToArray()
              list1.AddRange(dates)
-
-
-
-
-
-
-
-
-
              For Each num1 In list1
                  Dim sr As StreamReader = New StreamReader(Label8.Text)
                  Dim strLine As String
@@ -462,20 +345,7 @@ Public Class Second_List
                      If DateTime.TryParse(OrigLst(i), dt) Then
                          dts.Add(dt)
                      End If
-
-
-
-
-
                  Next
-
-
-
-
-
-
-
-
                  For Each obj As Object In OrigLst
                      ListBox2.Items.Add(TextBox2.Text & " " & num1 & " " & obj)
                  Next
@@ -511,35 +381,13 @@ Public Class Second_List
                  End If
              Next oItem
              Dim sec = totalseconds1 Mod 60
-
              Dim remainder1 = totalMinutes1 Mod 60
-
-
-
-
              minutesx = totalMinutes1 \ 60 + (totalseconds1 \ 60)
              mm = (remainder1 + (totalseconds1 \ 60)) Mod 60
-
-
-
-
              totalHours1 += totalMinutes1 \ 60 + minutesx \ 60
-
-
-
-
-
-
-
-
-
-
-
-
              totalTime1 = totalHours1.ToString("d2") & ":" & mm.ToString("d2") & ":" & sec.ToString("d2")
              totalHours1 = 0
              totalMinutes1 = 0
-
              Dim countsun As Integer = 0
              Dim countsat As Integer = 0
              Dim nonholiday As Integer = 0
@@ -558,7 +406,6 @@ Public Class Second_List
              Next
              Dim average
              If Format(DateTimePicker1.Value.Date.ToString("yyyy/MM/dd")) = Format(DateTimePicker2.Value.Date.ToString("yyyy/MM/dd")) Then
-
                  ListBox6.Items.Add(TextBox2.Text & " " & totalTime1.ToString)
              Else
                  If totalTime1.ToString = "00:00:00" Then
@@ -566,19 +413,13 @@ Public Class Second_List
                  Else
                      Dim result As Integer = totalTime1.ToString.Split(":")(0) * 60 + totalTime1.ToString.ToString.Split(":")(1) + (totalTime1.ToString.ToString.Split(":")(2) \ 60)
                      Dim days As Integer = result \ nonholiday
-
                      Dim hours As Integer = days \ 60
                      Dim minutes As Integer = days - (hours * 60)
                      Dim timeElapsed As String = CType(hours.ToString("d2"), String) & ":" & CType(minutes.ToString("d2"), String)
                      average = timeElapsed
                  End If
-
                  ListBox6.Items.Add(TextBox2.Text & " " & totalTime1.ToString & " " & "(" & average & ")")
              End If
-
-
-
-
          Else
              ListBox1.Items.Clear()
              ListBox2.Items.Clear()
@@ -664,9 +505,6 @@ Public Class Second_List
                  totalTime1 = totalHours1.ToString("d2") & ":" & mm.ToString("d2") & ":" & sec.ToString("d2")
                  totalHours1 = 0
                  totalMinutes1 = 0
-
-
-
                  Dim countsun As Integer = 0
                  Dim countsat As Integer = 0
                  Dim nonholiday As Integer = 0
@@ -685,7 +523,6 @@ Public Class Second_List
                  Next
                  Dim average
                  If Format(DateTimePicker1.Value.Date.ToString("yyyy/MM/dd")) = Format(DateTimePicker2.Value.Date.ToString("yyyy/MM/dd")) Then
-
                      ListBox6.Items.Add(nn(index) & " " & totalTime1.ToString)
                  Else
                      If totalTime1.ToString = "00:00:00" Then
@@ -693,40 +530,26 @@ Public Class Second_List
                      Else
                          Dim result As Integer = totalTime1.ToString.Split(":")(0) * 60 + totalTime1.ToString.Split(":")(1) + (totalTime1.ToString.Split(":")(2) \ 60)
                          Dim days As Integer = result / nonholiday
-
                          Dim hours As Integer = days \ 60
                          Dim minutes As Integer = days - (hours * 60)
                          Dim timeElapsed As String = CType(hours.ToString("d2"), String) & ":" & CType(minutes.ToString("d2"), String)
                          average = timeElapsed
                      End If
                      ListBox6.Items.Add(nn(index) & " " & totalTime1.ToString & " " & "(" & average & ")")
-
                  End If
-
-
-
              Next
          End If
          OriginCheckBox4.Enabled = True
      End If
-
  End Sub
 )
         thread.Start()
-
-
-
-
-
     End Sub
-
     Private Sub OriginButton6_Click(sender As Object, e As EventArgs) Handles OriginButton6.Click
         If Label9.Text = "No excel file loaded..." Then
             MsgBox("Load excel file first!", MsgBoxStyle.Information)
         Else
-
             If OriginCheckBox2.Checked = True Then
-
                 Dim nr As Integer
                 If OriginRadioButton1.Checked = True Then
                     Dim nn(ListBox5.Items.Count) As String
@@ -753,7 +576,6 @@ Public Class Second_List
                             xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Borders.LineStyle = XlLineStyle.xlContinuous
                             'xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(2) & " " & oItem.Split(" "c)(3)
                             xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(3)
-
                             xlBook.Sheets(ComboBox1.SelectedItem).Range("B1").Offset(OffS1, 0).Value = oItem.Split(" "c)(2).Split("-"c)(1) & "/" & oItem.Split(" "c)(2).Split("-"c)(2) & "/" & oItem.Split(" "c)(2).Split("-"c)(0)
                             xlBook.Sheets(ComboBox1.SelectedItem).Range("B1").Offset(OffS1, 0).HorizontalAlignment = 2
                             xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Borders.LineStyle = XlLineStyle.xlContinuous
@@ -769,36 +591,13 @@ Public Class Second_List
                     nr = OffS1
                     'xlBook.Sheets(ComboBox1.SelectedItem).Rows("34").delete()
                     Dim sec = totalseconds1 Mod 60
-
                     Dim remainder1 = totalMinutes1 Mod 60
-
-
-
-
                     minutesx = totalMinutes1 \ 60 + (totalseconds1 \ 60)
                     mm = (remainder1 + (totalseconds1 \ 60)) Mod 60
-
-
-
-
                     totalHours1 += totalMinutes1 \ 60 + minutesx \ 60
-
-
-
-
-
-
-
-
-
-
-
-
                     totalTime1 = totalHours1.ToString("d2") & ":" & mm.ToString("d2") & ":" & sec.ToString("d2")
                     totalHours1 = 0
                     totalMinutes1 = 0
-
-
                     Dim countsun As Integer = 0
                     Dim countsat As Integer = 0
                     Dim nonholiday As Integer = 0
@@ -819,14 +618,12 @@ Public Class Second_List
                     If Format(DateTimePicker1.Value.Date.ToString("yyyy/MM/dd")) = Format(DateTimePicker2.Value.Date.ToString("yyyy/MM/dd")) Then
                         xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = totalTime1.ToString
                         xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 2).Value = ComboBox1.SelectedItem & "(" & nonholiday & " weekdays" & ")"
-
                     Else
                         If totalTime1.ToString = "00:00:00" Then
                             average = "00:00"
                         Else
                             Dim result As Integer = totalTime1.ToString.Split(":")(0) * 60 + totalTime1.ToString.Split(":")(1) + (totalTime1.ToString.Split(":")(2) \ 60)
                             Dim days As Integer = result / nonholiday
-
                             Dim hours As Integer = days \ 60
                             Dim minutes As Integer = days - (hours * 60)
                             Dim timeElapsed As String = CType(hours.ToString("d2"), String) & ":" & CType(minutes.ToString("d2"), String)
@@ -835,19 +632,12 @@ Public Class Second_List
                         xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = totalTime1.ToString & " (" & average & ")"
                         xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 2).Value = ComboBox1.SelectedItem & "(" & nonholiday & " weekdays" & ")"
                     End If
-
-
-
-
-
                     xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Interior.ColorIndex = 50
                     xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Borders.LineStyle = XlLineStyle.xlContinuous
                     OffS2 = OffS2 + 1
                     OffS1 = 2
-
                     xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 1).Value = "Name"
                     xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 1).Borders.LineStyle = XlLineStyle.xlContinuous
-
                     xlBook.Sheets(ComboBox1.SelectedItem).Cells(1, 2).Value = "Month"
                     xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 2).Borders.LineStyle = XlLineStyle.xlContinuous
                     xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 2).Font.Bold = True
@@ -881,7 +671,6 @@ Public Class Second_List
                     Dim totalMinutes1 As Integer
                     Dim totalseconds1 As Integer
                     Dim minutesx, mm As Integer
-
                     For Each oItem In ListBox4.Items
                         Dim emer As String
                         emer = oItem.Split(" "c)(0).ToString + " " + oItem.Split(" "c)(1).ToString
@@ -911,8 +700,6 @@ Public Class Second_List
                     totalTime1 = totalHours1.ToString("d2") & ":" & mm.ToString("d2") & ":" & sec.ToString("d2")
                     totalHours1 = 0
                     totalMinutes1 = 0
-
-
                     Dim countsun As Integer = 0
                     Dim countsat As Integer = 0
                     Dim nonholiday As Integer = 0
@@ -932,7 +719,6 @@ Public Class Second_List
                     Dim average
                     If Format(DateTimePicker1.Value.Date.ToString("yyyy/MM/dd")) = Format(DateTimePicker2.Value.Date.ToString("yyyy/MM/dd")) Then
                         xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = totalTime1.ToString
-
                         xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 2).Value = ComboBox1.SelectedItem & "(" & nonholiday & " weekdays" & ")"
                     Else
                         If totalTime1.ToString = "00:00:00" Then
@@ -940,7 +726,6 @@ Public Class Second_List
                         Else
                             Dim result As Integer = totalTime1.ToString.Split(":")(0) * 60 + totalTime1.ToString.Split(":")(1) + (totalTime1.ToString.Split(":")(2) \ 60)
                             Dim days As Integer = result / nonholiday
-
                             Dim hours As Integer = days \ 60
                             Dim minutes As Integer = days - (hours * 60)
                             Dim timeElapsed As String = CType(hours.ToString("d2"), String) & ":" & CType(minutes.ToString("d2"), String)
@@ -949,17 +734,12 @@ Public Class Second_List
                         xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 2).Value = ComboBox1.SelectedItem & "(" & nonholiday & " weekdays" & ")"
                         xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = totalTime1.ToString & " (" & average & ")"
                     End If
-
-
-
                     xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Interior.ColorIndex = 50
                     xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Borders.LineStyle = XlLineStyle.xlContinuous
                     OffS2 = OffS2 + 1
                     OffS1 = 2
-
                     xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 1).Value = "Name"
                     xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 1).Borders.LineStyle = XlLineStyle.xlContinuous
-
                     xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 2).Borders.LineStyle = XlLineStyle.xlContinuous
                     xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 2).Font.Bold = True
                     xlBook.Sheets(ComboBox1.SelectedItem).Range(xlBook.Sheets(ComboBox1.SelectedItem).Cells(34, 1), xlBook.Sheets(ComboBox1.SelectedItem).Cells(34, 2)).Merge
@@ -979,10 +759,6 @@ Public Class Second_List
                     Next
                     MsgBox("Export Done!", MsgBoxStyle.Information)
                 End If
-
-
-
-
             Else
                 Dim nr As Integer
                 If OriginRadioButton1.Checked = True Then
@@ -1011,10 +787,8 @@ Public Class Second_List
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Borders.LineStyle = XlLineStyle.xlContinuous
                                 'xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(2) & " " & oItem.Split(" "c)(3)
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(3)
-
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("B1").Offset(OffS1, 0).Value = oItem.Split(" "c)(2).Split("-"c)(1) & "/" & oItem.Split(" "c)(2).Split("-"c)(2) & "/" & oItem.Split(" "c)(2).Split("-"c)(0)
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("B1").Offset(OffS1, 0).HorizontalAlignment = 2
-
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Borders.LineStyle = XlLineStyle.xlContinuous
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).HorizontalAlignment = 2
                                 If emer.Contains(nn(index)) And Not oItem.Split(" "c)(3).ToString.Contains("Absent") Then
@@ -1026,7 +800,6 @@ Public Class Second_List
                             End If
                         Next oItem
                         nr = OffS1
-
                         'xlBook.Sheets(ComboBox1.SelectedItem).Rows("34").delete()
                         Dim sec = totalseconds1 Mod 60
                         Dim remainder1 = totalMinutes1 Mod 60
@@ -1037,8 +810,6 @@ Public Class Second_List
                         totalTime1 = totalHours1.ToString("d2") & ":" & mm.ToString("d2") & ":" & sec.ToString("d2")
                         totalHours1 = 0
                         totalMinutes1 = 0
-
-
                         Dim countsun As Integer = 0
                         Dim countsat As Integer = 0
                         Dim nonholiday As Integer = 0
@@ -1059,14 +830,12 @@ Public Class Second_List
                         If Format(DateTimePicker1.Value.Date.ToString("yyyy/MM/dd")) = Format(DateTimePicker2.Value.Date.ToString("yyyy/MM/dd")) Then
                             xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = totalTime1.ToString
                             xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 2).Value = ComboBox1.SelectedItem & "(" & nonholiday & " weekdays" & ")"
-
                         Else
                             If totalTime1.ToString = "00:00:00" Then
                                 average = "00:00"
                             Else
                                 Dim result As Integer = totalTime1.ToString.Split(":")(0) * 60 + totalTime1.ToString.Split(":")(1) + (totalTime1.ToString.Split(":")(2) \ 60)
                                 Dim days As Integer = result / nonholiday
-
                                 Dim hours As Integer = days \ 60
                                 Dim minutes As Integer = days - (hours * 60)
                                 Dim timeElapsed As String = CType(hours.ToString("d2"), String) & ":" & CType(minutes.ToString("d2"), String)
@@ -1075,11 +844,6 @@ Public Class Second_List
                             xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = totalTime1.ToString & " (" & average & ")"
                             xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 2).Value = ComboBox1.SelectedItem & "(" & nonholiday & " weekdays" & ")"
                         End If
-
-
-
-
-
                         xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Interior.ColorIndex = 50
                         xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Borders.LineStyle = XlLineStyle.xlContinuous
                         OffS2 = OffS2 + 1
@@ -1087,7 +851,6 @@ Public Class Second_List
                     Next
                     xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 1).Value = "Name"
                     xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 1).Borders.LineStyle = XlLineStyle.xlContinuous
-
                     xlBook.Sheets(ComboBox1.SelectedItem).Cells(1, 2).Value = "Month"
                     xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 2).Borders.LineStyle = XlLineStyle.xlContinuous
                     xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 2).Font.Bold = True
@@ -1152,8 +915,6 @@ Public Class Second_List
                         totalTime1 = totalHours1.ToString("d2") & ":" & mm.ToString("d2") & ":" & sec.ToString("d2")
                         totalHours1 = 0
                         totalMinutes1 = 0
-
-
                         Dim countsun As Integer = 0
                         Dim countsat As Integer = 0
                         Dim nonholiday As Integer = 0
@@ -1173,7 +934,6 @@ Public Class Second_List
                         Dim average
                         If Format(DateTimePicker1.Value.Date.ToString("yyyy/MM/dd")) = Format(DateTimePicker2.Value.Date.ToString("yyyy/MM/dd")) Then
                             xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = totalTime1.ToString
-
                             xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 2).Value = ComboBox1.SelectedItem & "(" & nonholiday & " weekdays" & ")"
                         Else
                             If totalTime1.ToString = "00:00:00" Then
@@ -1181,7 +941,6 @@ Public Class Second_List
                             Else
                                 Dim result As Integer = totalTime1.ToString.Split(":")(0) * 60 + totalTime1.ToString.Split(":")(1) + (totalTime1.ToString.Split(":")(2) \ 60)
                                 Dim days As Integer = result / nonholiday
-
                                 Dim hours As Integer = days \ 60
                                 Dim minutes As Integer = days - (hours * 60)
                                 Dim timeElapsed As String = CType(hours.ToString("d2"), String) & ":" & CType(minutes.ToString("d2"), String)
@@ -1190,9 +949,6 @@ Public Class Second_List
                             xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 2).Value = ComboBox1.SelectedItem & "(" & nonholiday & " weekdays" & ")"
                             xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = totalTime1.ToString & " (" & average & ")"
                         End If
-
-
-
                         xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Interior.ColorIndex = 50
                         xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Borders.LineStyle = XlLineStyle.xlContinuous
                         OffS2 = OffS2 + 1
@@ -1200,7 +956,6 @@ Public Class Second_List
                     Next
                     xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 1).Value = "Name"
                     xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 1).Borders.LineStyle = XlLineStyle.xlContinuous
-
                     xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 2).Borders.LineStyle = XlLineStyle.xlContinuous
                     xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 2).Font.Bold = True
                     xlBook.Sheets(ComboBox1.SelectedItem).Range(xlBook.Sheets(ComboBox1.SelectedItem).Cells(34, 1), xlBook.Sheets(ComboBox1.SelectedItem).Cells(34, 2)).Merge
@@ -1221,16 +976,11 @@ Public Class Second_List
                     MsgBox("Export Done!", MsgBoxStyle.Information)
                 End If
             End If
-
-            '
-
         End If
     End Sub
-
     Private Sub Label24_Click(sender As Object, e As EventArgs) Handles Label24.Click
         Me.Close()
     End Sub
-
     Private Sub OriginButton4_Click_1(sender As Object, e As EventArgs) Handles OriginButton4.Click
         Dim open As New OpenFileDialog With {
         .Filter = "Text File(*.txt*)|*.txt*"
@@ -1240,9 +990,7 @@ Public Class Second_List
         Dim strFilename As String
         strFilename = Trim(Label8.Text)
         OriginButton5.Enabled = True
-
         If strFilename.Length = 0 Then
-
         Else
             Dim shkurt As String = strFilename.Substring(strFilename.LastIndexOf("\")).Replace("\", "")
             Label13.Text = "File loaded!"
@@ -1250,11 +998,7 @@ Public Class Second_List
             Label19.ForeColor = Color.ForestGreen
         End If
         Label13.ForeColor = Color.ForestGreen
-
-
-
         If Label8.Text.Length = 0 Then
-
         Else
             Dim lines() As String = IO.File.ReadAllLines(Label8.Text)
             Dim x, y, z As String
@@ -1284,7 +1028,6 @@ Public Class Second_List
             DateTimePicker1.Enabled = True
         End If
     End Sub
-
     Private Sub OriginButton1_Click_1(sender As Object, e As EventArgs) Handles OriginButton1.Click
         MsgBox("What format should have the list?" & vbCrLf & vbCrLf & "*Name Surname Checktime(Date Time) Checktype(IN,OUT)" & vbCrLf & "*No header text" & vbCrLf & "*Run button 'Format List' only one time for each list!" & vbCrLf & "*Sort list from first check to last check!" & vbCrLf & "*Excel needs to be installed" & vbCrLf & "*Date format should be(yyyy-MM-dd)" & vbCrLf & vbCrLf & "List not formatted example: Gabriel Lami 2020-07-15 09:41:10 IN", MsgBoxStyle.Information)
     End Sub
@@ -1293,16 +1036,12 @@ Public Class Second_List
         Dim open As New OpenFileDialog With {
             .Filter = "Text File(*.txt*)|*.txt*"
         }
-        ' open.ShowDialog()
-
-
         If open.ShowDialog() = DialogResult.OK Then
             Label22.Text = (open.FileName)
             Dim strFilename As String
             strFilename = Trim(Label22.Text)
             Dim readingFile As System.IO.StreamReader = New System.IO.StreamReader(Label22.Text)
             Dim readingLine As String = readingFile.ReadLine()
-
             readingFile.Close()
             ListBox1.Items.Clear()
             Dim sr As StreamReader = New StreamReader(Label22.Text)
@@ -1312,10 +1051,6 @@ Public Class Second_List
                 Dim regex As Regex = New Regex("[ ]{2,}", RegexOptions.None)
                 strLine = regex.Replace(strLine, " ")
                 strLine = System.Text.RegularExpressions.Regex.Replace(strLine, "\s+", " ")
-
-
-
-
                 ' sm = st.Replace("IN", "C/In").Replace("OUT", "C/Out")
                 y = strLine.Split(" ")(0) & " " & strLine.Split(" ")(1) & " " & strLine.Split(" ")(2).Replace("/", "-") & " " & strLine.Split(" ")(3) & " " & strLine.Split(" ")(4)
                 If OriginCheckBox1.Checked = True Then
@@ -1323,8 +1058,6 @@ Public Class Second_List
                 Else
                     sm = y.Replace("IN", "C/In").Replace("OUT", "C/Out")
                 End If
-
-
                 If TextBox4.Text = "dd/MM/yyyy" Or TextBox4.Text = "dd-MM-yyyy" Then
                     Dim date2 As Date = Convert.ToDateTime(sm.Split(" ")(2))
                     fdate = sm.Split(" ")(0) & " " & sm.Split(" ")(1) & " " & date2.ToString("yyyy-dd-MM", CultureInfo.InvariantCulture) & " " & sm.Split(" ")(3) & " " & sm.Split(" ")(4)
@@ -1335,14 +1068,11 @@ Public Class Second_List
                     'Dim date2 As Date = Convert.ToDateTime(sm.Split(" ")(2))
                     fdate = sm.Split(" ")(0) & " " & sm.Split(" ")(1) & " " & sm.Split(" ")(2) & " " & sm.Split(" ")(3) & " " & sm.Split(" ")(4)
                 End If
-
-
                 If OriginCheckBox3.Checked = True Then
                     reve = fdate.Replace(TextBox5.Text, "C/In1").Replace(TextBox6.Text, TextBox5.Text).Replace("C/In1", TextBox6.Text).Replace("�", "ç")
                 Else
                     reve = fdate
                 End If
-
                 ListBox1.Items.Add(reve)
             Loop
             sr.Close()
@@ -1366,7 +1096,6 @@ Public Class Second_List
             TextBox4.Text = "yyyy-MM-dd"
         End If
     End Sub
-
     Private Sub OriginTheme1_Click(sender As Object, e As EventArgs) Handles OriginTheme1.Click
         Dim countsun As Integer = 0
         Dim countsat As Integer = 0
@@ -1386,7 +1115,6 @@ Public Class Second_List
         Next
         Label21.Text = "(" & nonholiday & ")"
     End Sub
-
     Private Sub DateTimePicker2_ValueChanged_1(sender As Object, e As EventArgs) Handles DateTimePicker2.ValueChanged
         If DateTimePicker2.Value < DateTimePicker1.Value Then
             DateTimePicker2.Value = Date.Now
@@ -1418,7 +1146,6 @@ Public Class Second_List
         Next
         Label21.Text = "(" & nonholiday & ")"
     End Sub
-
     Private Sub DateTimePicker1_ValueChanged_1(sender As Object, e As EventArgs) Handles DateTimePicker1.ValueChanged
         If DateTimePicker1.Value > DateTimePicker2.Value Then
             DateTimePicker1.Value = Date.Now
@@ -1450,7 +1177,6 @@ Public Class Second_List
         Next
         Label21.Text = "(" & nonholiday & ")"
     End Sub
-
     Private Sub OriginCheckBox3_CheckedChanged(sender As Object) Handles OriginCheckBox3.CheckedChanged
         If OriginCheckBox3.Checked = True Then
             TextBox5.Enabled = True
@@ -1462,13 +1188,10 @@ Public Class Second_List
             TextBox6.Text = ""
         End If
     End Sub
-
     Private Sub Label5_Click_1(sender As Object, e As EventArgs) Handles Label5.Click
         MsgBox("You can drag and drop list of users on a .txt file or right click for more options!", MsgBoxStyle.Information)
     End Sub
-
     Private Sub OriginButton7_Click(sender As Object, e As EventArgs) Handles OriginButton7.Click
-
         If OriginRadioButton3.Checked = True Then
             SaveFileDialog1.Filter = "TXT Files (*.txt*)|*.txt"
             If SaveFileDialog1.ShowDialog = Forms.DialogResult.OK _
@@ -1479,7 +1202,6 @@ Public Class Second_List
                 Next
                 SW.Close()
                 MsgBox("List Exported!", MsgBoxStyle.Information)
-
             End If
         ElseIf OriginRadioButton4.Checked = True Then
             SaveFileDialog1.Filter = "TXT Files (*.txt*)|*.txt"
@@ -1491,7 +1213,6 @@ Public Class Second_List
                 Next
                 SW.Close()
                 MsgBox("List Exported!", MsgBoxStyle.Information)
-
             End If
         ElseIf OriginRadioButton5.Checked = True Then
             SaveFileDialog1.Filter = "TXT Files (*.txt*)|*.txt"
@@ -1503,7 +1224,6 @@ Public Class Second_List
                 Next
                 SW.Close()
                 MsgBox("List Exported!", MsgBoxStyle.Information)
-
             End If
         ElseIf OriginRadioButton6.Checked = True Then
             SaveFileDialog1.Filter = "TXT Files (*.txt*)|*.txt"
@@ -1515,31 +1235,24 @@ Public Class Second_List
                 Next
                 SW.Close()
                 MsgBox("List Exported!", MsgBoxStyle.Information)
-
             End If
         Else
             MsgBox("Select one list to export first!", MsgBoxStyle.Information)
         End If
-
-
     End Sub
-
     Private Sub OriginCheckBox4_CheckedChanged(sender As Object) Handles OriginCheckBox4.CheckedChanged
         If OriginCheckBox4.Checked = True Then
             Merged_List.Show()
             Me.WindowState = FormWindowState.Minimized
         End If
     End Sub
-
     Private Sub Label27_Click(sender As Object, e As EventArgs) Handles Label27.Click
         Me.WindowState = FormWindowState.Minimized
     End Sub
-
     Private Sub OriginCheckBox1_CheckedChanged_1(sender As Object) Handles OriginCheckBox1.CheckedChanged
         If OriginCheckBox1.Checked = True Then
             TextBox1.Enabled = True
             TextBox3.Enabled = True
-
         Else
             TextBox1.Enabled = False
             TextBox3.Enabled = False
@@ -1547,9 +1260,4 @@ Public Class Second_List
             TextBox3.Text = ""
         End If
     End Sub
-
-
-
-
-
 End Class
