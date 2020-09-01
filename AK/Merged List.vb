@@ -1,7 +1,4 @@
-﻿Imports System.Globalization
-Imports System.IO
-Imports System.Text.RegularExpressions
-Imports System.Threading
+﻿Imports System.IO
 Imports System.Windows
 Imports Microsoft.Office.Interop.Excel
 Public Class Merged_List
@@ -201,17 +198,17 @@ Public Class Merged_List
 
                     ElseIf itm1.ToString.Split(" "c)(3).ToString.Contains("Absent") Then
 
-                            Dim ts1 As TimeSpan = TimeSpan.Parse("00:00:00")
-                            Dim ts2 As TimeSpan = TimeSpan.Parse(itm2.ToString.Split(" "c)(3))
-                            tsSum = ts1 + ts2
-                        ElseIf itm2.ToString.Split(" "c)(3).ToString.Contains("Absent") Then
+                        Dim ts1 As TimeSpan = TimeSpan.Parse("00:00:00")
+                        Dim ts2 As TimeSpan = TimeSpan.Parse(itm2.ToString.Split(" "c)(3))
+                        tsSum = ts1 + ts2
+                    ElseIf itm2.ToString.Split(" "c)(3).ToString.Contains("Absent") Then
 
 
-                            Dim ts1 As TimeSpan = TimeSpan.Parse(itm1.ToString.Split(" "c)(3))
-                            Dim ts2 As TimeSpan = TimeSpan.Parse("00:00:00")
-                            tsSum = ts1 + ts2
-                        Else
-                            Dim ts1 As TimeSpan = TimeSpan.Parse(itm1.ToString.Split(" "c)(3))
+                        Dim ts1 As TimeSpan = TimeSpan.Parse(itm1.ToString.Split(" "c)(3))
+                        Dim ts2 As TimeSpan = TimeSpan.Parse("00:00:00")
+                        tsSum = ts1 + ts2
+                    Else
+                        Dim ts1 As TimeSpan = TimeSpan.Parse(itm1.ToString.Split(" "c)(3))
                         Dim ts2 As TimeSpan = TimeSpan.Parse(itm2.ToString.Split(" "c)(3))
                         tsSum = ts1 + ts2
                     End If
