@@ -59,6 +59,7 @@ Partial Class Merged_List
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.OriginCheckBox1 = New Time_Attendance_Filter.OriginCheckBox()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.OriginTheme2.SuspendLayout()
@@ -106,6 +107,7 @@ Partial Class Merged_List
         '
         'GroupBox4
         '
+        Me.GroupBox4.Controls.Add(Me.OriginCheckBox1)
         Me.GroupBox4.Controls.Add(Me.OriginRadioButton2)
         Me.GroupBox4.Controls.Add(Me.Label8)
         Me.GroupBox4.Controls.Add(Me.OriginButton6)
@@ -492,6 +494,20 @@ Partial Class Merged_List
         Me.Label5.TabIndex = 68
         Me.Label5.Text = "Employees: "
         '
+        'OriginCheckBox1
+        '
+        Me.OriginCheckBox1.Checked = False
+        Me.OriginCheckBox1.Customization = "AAAA/+bm5v/S0tL/5ubm/6qqqv/19fX/9fX1/w=="
+        Me.OriginCheckBox1.Font = New System.Drawing.Font("Verdana", 8.0!)
+        Me.OriginCheckBox1.Image = Nothing
+        Me.OriginCheckBox1.Location = New System.Drawing.Point(461, 73)
+        Me.OriginCheckBox1.Name = "OriginCheckBox1"
+        Me.OriginCheckBox1.NoRounding = False
+        Me.OriginCheckBox1.Size = New System.Drawing.Size(176, 17)
+        Me.OriginCheckBox1.TabIndex = 67
+        Me.OriginCheckBox1.Text = "Replace ""Absent"" with 8h"
+        Me.OriginCheckBox1.Transparent = False
+        '
         'Merged_List
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -552,4 +568,5 @@ Partial Class Merged_List
     Friend WithEvents Label1 As Label
     Friend WithEvents OriginButton4 As OriginButton
     Friend WithEvents OriginButton2 As OriginButton
+    Friend WithEvents OriginCheckBox1 As OriginCheckBox
 End Class

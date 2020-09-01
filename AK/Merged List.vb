@@ -188,22 +188,30 @@ Public Class Merged_List
                 If (itm1.ToString.Split(" "c)(0) + itm1.ToString.Split(" "c)(1) + itm1.ToString.Split(" "c)(2)) = (itm2.ToString.Split(" "c)(0) + itm2.ToString.Split(" "c)(1) + itm2.ToString.Split(" "c)(2)) Then
 
                     If itm1.ToString.Split(" "c)(3).ToString.Contains("Absent") And itm2.ToString.Split(" "c)(3).ToString.Contains("Absent") Then
-                        Dim ts1 As TimeSpan = TimeSpan.Parse("00:00:00")
-                        Dim ts2 As TimeSpan = TimeSpan.Parse("00:00:00")
-                        tsSum = ts1 + ts2
+
+                        If OriginCheckBox1.Checked = True Then
+                            Dim ts1 As TimeSpan = TimeSpan.Parse("08:00:00")
+                            Dim ts2 As TimeSpan = TimeSpan.Parse("00:00:00")
+                            tsSum = ts1 + ts2
+                        Else
+                            Dim ts1 As TimeSpan = TimeSpan.Parse("00:00:00")
+                            Dim ts2 As TimeSpan = TimeSpan.Parse("00:00:00")
+                            tsSum = ts1 + ts2
+                        End If
+
                     ElseIf itm1.ToString.Split(" "c)(3).ToString.Contains("Absent") Then
 
-                        Dim ts1 As TimeSpan = TimeSpan.Parse("00:00:00")
-                        Dim ts2 As TimeSpan = TimeSpan.Parse(itm2.ToString.Split(" "c)(3))
-                        tsSum = ts1 + ts2
-                    ElseIf itm2.ToString.Split(" "c)(3).ToString.Contains("Absent") Then
+                            Dim ts1 As TimeSpan = TimeSpan.Parse("00:00:00")
+                            Dim ts2 As TimeSpan = TimeSpan.Parse(itm2.ToString.Split(" "c)(3))
+                            tsSum = ts1 + ts2
+                        ElseIf itm2.ToString.Split(" "c)(3).ToString.Contains("Absent") Then
 
 
-                        Dim ts1 As TimeSpan = TimeSpan.Parse(itm1.ToString.Split(" "c)(3))
-                        Dim ts2 As TimeSpan = TimeSpan.Parse("00:00:00")
-                        tsSum = ts1 + ts2
-                    Else
-                        Dim ts1 As TimeSpan = TimeSpan.Parse(itm1.ToString.Split(" "c)(3))
+                            Dim ts1 As TimeSpan = TimeSpan.Parse(itm1.ToString.Split(" "c)(3))
+                            Dim ts2 As TimeSpan = TimeSpan.Parse("00:00:00")
+                            tsSum = ts1 + ts2
+                        Else
+                            Dim ts1 As TimeSpan = TimeSpan.Parse(itm1.ToString.Split(" "c)(3))
                         Dim ts2 As TimeSpan = TimeSpan.Parse(itm2.ToString.Split(" "c)(3))
                         tsSum = ts1 + ts2
                     End If
@@ -212,7 +220,12 @@ Public Class Merged_List
 
 
                     If tsSum.ToString = "00:00:00" Then
-                        Me.ListBox4.Items.Add(itm1.ToString.Split(" "c)(0) & " " & itm1.ToString.Split(" "c)(1) & " " & itm1.ToString.Split(" "c)(2) & " " & "Absent")
+                        If OriginCheckBox1.Checked = True Then
+                            Me.ListBox4.Items.Add(itm1.ToString.Split(" "c)(0) & " " & itm1.ToString.Split(" "c)(1) & " " & itm1.ToString.Split(" "c)(2) & " " & "08:00:00*Absent")
+                        Else
+                            Me.ListBox4.Items.Add(itm1.ToString.Split(" "c)(0) & " " & itm1.ToString.Split(" "c)(1) & " " & itm1.ToString.Split(" "c)(2) & " " & "Absent")
+                        End If
+
                     Else
                         Me.ListBox4.Items.Add(itm1.ToString.Split(" "c)(0) & " " & itm1.ToString.Split(" "c)(1) & " " & itm1.ToString.Split(" "c)(2) & " " & tsSum.ToString)
                     End If
@@ -238,16 +251,33 @@ Public Class Merged_List
                 Dim emer As String
                 emer = oItem.Split(" "c)(0).ToString + " " + oItem.Split(" "c)(1).ToString
                 If emer.Contains(Form1.TextBox2.Text) And emer.Length = Form1.TextBox2.Text.Length Then
-                    If emer.Contains(Form1.TextBox2.Text) And Not oItem.Split(" "c)(3).ToString.Contains("Absent") Then
-                        totalHours1 += oItem.Split(" "c)(3).Split(":")(0)
-                        totalMinutes1 += oItem.Split(" "c)(3).Split(":")(1)
-                        totalseconds1 += oItem.Split(" "c)(3).Split(":")(2)
 
-                        'x += TimeSpan.Parse(oItem.Split(" "c)(3).ToString)
+                    If OriginCheckBox1.Checked = True Then
+                        If emer.Contains(Form1.TextBox2.Text) And Not oItem.Split(" "c)(3).ToString.Contains("?") Then
+                            totalHours1 += oItem.Split(" "c)(3).Split(":")(0)
+                            totalMinutes1 += oItem.Split(" "c)(3).Split(":")(1)
+                            totalseconds1 += oItem.Split(" "c)(3).Split(":")(2).ToString.Replace("*Absent", "")
+
+                            'x += TimeSpan.Parse(oItem.Split(" "c)(3).ToString)
 
 
 
+                        End If
+                    Else
+                        If emer.Contains(Form1.TextBox2.Text) And Not oItem.Split(" "c)(3).ToString.Contains("Absent") Then
+                            totalHours1 += oItem.Split(" "c)(3).Split(":")(0)
+                            totalMinutes1 += oItem.Split(" "c)(3).Split(":")(1)
+                            totalseconds1 += oItem.Split(" "c)(3).Split(":")(2)
+
+                            'x += TimeSpan.Parse(oItem.Split(" "c)(3).ToString)
+
+
+
+                        End If
                     End If
+
+
+
                 End If
             Next oItem
             Dim sec = totalseconds1 Mod 60
@@ -340,12 +370,26 @@ Public Class Merged_List
                     Dim emer As String
                     emer = oItem.Split(" "c)(0).ToString + " " + oItem.Split(" "c)(1).ToString
                     If emer.Contains(nn(index)) And emer.Length = nn(index).Length Then
-                        If emer.Contains(nn(index)) And Not oItem.Split(" "c)(3).ToString.Contains("Absent") Then
-                            ' x += TimeSpan.Parse(oItem.Split(" "c)(3).ToString)
-                            totalHours1 += oItem.Split(" "c)(3).Split(":")(0)
-                            totalMinutes1 += oItem.Split(" "c)(3).Split(":")(1)
-                            totalseconds1 += oItem.Split(" "c)(3).Split(":")(2)
+
+
+                        If OriginCheckBox1.Checked = True Then
+                            If emer.Contains(nn(index)) And Not oItem.Split(" "c)(3).ToString.Contains("?") Then
+                                ' x += TimeSpan.Parse(oItem.Split(" "c)(3).ToString)
+                                totalHours1 += oItem.Split(" "c)(3).Split(":")(0)
+                                totalMinutes1 += oItem.Split(" "c)(3).Split(":")(1)
+                                totalseconds1 += oItem.Split(" "c)(3).Split(":")(2).ToString.Replace("*Absent", "")
+                            End If
+                        Else
+
+                            If emer.Contains(nn(index)) And Not oItem.Split(" "c)(3).ToString.Contains("Absent") Then
+                                ' x += TimeSpan.Parse(oItem.Split(" "c)(3).ToString)
+                                totalHours1 += oItem.Split(" "c)(3).Split(":")(0)
+                                totalMinutes1 += oItem.Split(" "c)(3).Split(":")(1)
+                                totalseconds1 += oItem.Split(" "c)(3).Split(":")(2)
+                            End If
                         End If
+
+
                     End If
                 Next oItem
 
@@ -559,18 +603,45 @@ Public Class Merged_List
                             xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Interior.ColorIndex = 15
                             xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Borders.LineStyle = XlLineStyle.xlContinuous
                             'xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(2) & " " & oItem.Split(" "c)(3)
-                            xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(3)
+
+
+                            If OriginCheckBox1.Checked = True Then
+                                If oItem.Split(" "c)(3).Contains("Absent") Then
+
+                                    xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Interior.ColorIndex = 3
+
+                                End If
+                                xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(3).Replace("*Absent", "")
+                            Else
+
+                                xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(3)
+                            End If
+
+
+
 
                             xlBook.Sheets(ComboBox1.SelectedItem).Range("B1").Offset(OffS1, 0).Value = oItem.Split(" "c)(2).Split("-"c)(1) & "/" & oItem.Split(" "c)(2).Split("-"c)(2) & "/" & oItem.Split(" "c)(2).Split("-"c)(0)
                             xlBook.Sheets(ComboBox1.SelectedItem).Range("B1").Offset(OffS1, 0).HorizontalAlignment = 2
                             xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Borders.LineStyle = XlLineStyle.xlContinuous
                             xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).HorizontalAlignment = 2
-                            If emer.Contains(TextBox2.Text) And Not oItem.Split(" "c)(3).ToString.Contains("Absent") Then
-                                totalHours1 += oItem.Split(" "c)(3).Split(":")(0)
-                                totalMinutes1 += oItem.Split(" "c)(3).Split(":")(1)
-                                totalseconds1 += oItem.Split(" "c)(3).Split(":")(2)
-                                'x += TimeSpan.Parse(oItem.Split(" "c)(3).ToString)
+
+                            If OriginCheckBox1.Checked = True Then
+                                If emer.Contains(TextBox2.Text) And Not oItem.Split(" "c)(3).ToString.Contains("?") Then
+                                    totalHours1 += oItem.Split(" "c)(3).Split(":")(0)
+                                    totalMinutes1 += oItem.Split(" "c)(3).Split(":")(1)
+                                    totalseconds1 += oItem.Split(" "c)(3).Split(":")(2).Replace("*Absent", "")
+                                    'x += TimeSpan.Parse(oItem.Split(" "c)(3).ToString)
+                                End If
+                            Else
+                                If emer.Contains(TextBox2.Text) And Not oItem.Split(" "c)(3).ToString.Contains("Absent") Then
+                                    totalHours1 += oItem.Split(" "c)(3).Split(":")(0)
+                                    totalMinutes1 += oItem.Split(" "c)(3).Split(":")(1)
+                                    totalseconds1 += oItem.Split(" "c)(3).Split(":")(2)
+                                    'x += TimeSpan.Parse(oItem.Split(" "c)(3).ToString)
+                                End If
                             End If
+
+
                             OffS1 = OffS1 + 1
                         End If
                     Next oItem
@@ -699,15 +770,46 @@ Public Class Merged_List
                             xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Value = TextBox2.Text
                             xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Interior.ColorIndex = 15
                             xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Borders.LineStyle = XlLineStyle.xlContinuous
-                            xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(3)
+
+
+                            If OriginCheckBox1.Checked = True Then
+                                If oItem.Split(" "c)(3).Contains("Absent") Then
+
+                                    xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Interior.ColorIndex = 3
+
+                                End If
+                                xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(3).Replace("*Absent", "")
+                            Else
+                                xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(3)
+                            End If
+
+
+
+
+
+
+
                             xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Borders.LineStyle = XlLineStyle.xlContinuous
                             xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).HorizontalAlignment = 2
-                            If emer.Contains(TextBox2.Text) And Not oItem.Split(" "c)(3).ToString.Contains("Absent") Then
-                                totalHours1 += oItem.Split(" "c)(3).Split(":")(0)
-                                totalMinutes1 += oItem.Split(" "c)(3).Split(":")(1)
-                                totalseconds1 += oItem.Split(" "c)(3).Split(":")(2)
-                                'x += TimeSpan.Parse(oItem.Split(" "c)(3).ToString)
+
+
+                            If OriginCheckBox1.Checked = True Then
+                                If emer.Contains(TextBox2.Text) And Not oItem.Split(" "c)(3).ToString.Contains("?") Then
+                                    totalHours1 += oItem.Split(" "c)(3).Split(":")(0)
+                                    totalMinutes1 += oItem.Split(" "c)(3).Split(":")(1)
+                                    totalseconds1 += oItem.Split(" "c)(3).Split(":")(2).Replace("*Absent", "")
+                                    'x += TimeSpan.Parse(oItem.Split(" "c)(3).ToString)
+                                End If
+                            Else
+                                If emer.Contains(TextBox2.Text) And Not oItem.Split(" "c)(3).ToString.Contains("Absent") Then
+                                    totalHours1 += oItem.Split(" "c)(3).Split(":")(0)
+                                    totalMinutes1 += oItem.Split(" "c)(3).Split(":")(1)
+                                    totalseconds1 += oItem.Split(" "c)(3).Split(":")(2)
+                                    'x += TimeSpan.Parse(oItem.Split(" "c)(3).ToString)
+                                End If
+
                             End If
+
                             OffS1 = OffS1 + 1
                         End If
                     Next oItem
@@ -821,19 +923,44 @@ Public Class Merged_List
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Interior.ColorIndex = 15
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Borders.LineStyle = XlLineStyle.xlContinuous
                                 'xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(2) & " " & oItem.Split(" "c)(3)
-                                xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(3)
+
+
+                                If OriginCheckBox1.Checked = True Then
+                                    If oItem.Split(" "c)(3).Contains("Absent") Then
+
+                                        xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Interior.ColorIndex = 3
+
+                                    End If
+                                    xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(3).Replace("*Absent", "")
+                                Else
+                                    xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(3)
+                                End If
+
+
 
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("B1").Offset(OffS1, 0).Value = oItem.Split(" "c)(2).Split("-"c)(1) & "/" & oItem.Split(" "c)(2).Split("-"c)(2) & "/" & oItem.Split(" "c)(2).Split("-"c)(0)
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("B1").Offset(OffS1, 0).HorizontalAlignment = 2
 
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Borders.LineStyle = XlLineStyle.xlContinuous
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).HorizontalAlignment = 2
-                                If emer.Contains(nn(index)) And Not oItem.Split(" "c)(3).ToString.Contains("Absent") Then
-                                    totalHours1 += oItem.Split(" "c)(3).Split(":")(0)
-                                    totalMinutes1 += oItem.Split(" "c)(3).Split(":")(1)
-                                    totalseconds1 += oItem.Split(" "c)(3).Split(":")(2)
-                                    ' x += TimeSpan.Parse(oItem.Split(" "c)(3).ToString)
+
+
+                                If OriginCheckBox1.Checked = True Then
+                                    If emer.Contains(nn(index)) And Not oItem.Split(" "c)(3).ToString.Contains("?") Then
+                                        totalHours1 += oItem.Split(" "c)(3).Split(":")(0)
+                                        totalMinutes1 += oItem.Split(" "c)(3).Split(":")(1)
+                                        totalseconds1 += oItem.Split(" "c)(3).Split(":")(2).Replace("*Absent", "")
+                                        ' x += TimeSpan.Parse(oItem.Split(" "c)(3).ToString)
+                                    End If
+                                Else
+                                    If emer.Contains(nn(index)) And Not oItem.Split(" "c)(3).ToString.Contains("Absent") Then
+                                        totalHours1 += oItem.Split(" "c)(3).Split(":")(0)
+                                        totalMinutes1 += oItem.Split(" "c)(3).Split(":")(1)
+                                        totalseconds1 += oItem.Split(" "c)(3).Split(":")(2)
+                                        ' x += TimeSpan.Parse(oItem.Split(" "c)(3).ToString)
+                                    End If
                                 End If
+
                                 OffS1 = OffS1 + 1
                             End If
                         Next oItem
@@ -945,14 +1072,41 @@ Public Class Merged_List
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Value = nn(index)
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Interior.ColorIndex = 15
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Borders.LineStyle = XlLineStyle.xlContinuous
-                                xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(3)
+
+
+                                If OriginCheckBox1.Checked = True Then
+                                    If oItem.Split(" "c)(3).Contains("Absent") Then
+
+                                        xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Interior.ColorIndex = 3
+
+                                    End If
+                                    xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(3).Replace("*Absent", "")
+                                Else
+                                    xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(3)
+                                End If
+
+
+
+
+
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Borders.LineStyle = XlLineStyle.xlContinuous
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).HorizontalAlignment = 2
-                                If emer.Contains(nn(index)) And Not oItem.Split(" "c)(3).ToString.Contains("Absent") Then
-                                    totalHours1 += oItem.Split(" "c)(3).Split(":")(0)
-                                    totalMinutes1 += oItem.Split(" "c)(3).Split(":")(1)
-                                    totalseconds1 += oItem.Split(" "c)(3).Split(":")(2)
-                                    'x += TimeSpan.Parse(oItem.Split(" "c)(3).ToString)
+                                If OriginCheckBox1.Checked = True Then
+                                    If emer.Contains(nn(index)) And Not oItem.Split(" "c)(3).ToString.Contains("?") Then
+                                        totalHours1 += oItem.Split(" "c)(3).Split(":")(0)
+                                        totalMinutes1 += oItem.Split(" "c)(3).Split(":")(1)
+                                        totalseconds1 += oItem.Split(" "c)(3).Split(":")(2).ToString.Replace("*Absent", "")
+                                        'x += TimeSpan.Parse(oItem.Split(" "c)(3).ToString)
+                                    End If
+
+                                Else
+
+                                    If emer.Contains(nn(index)) And Not oItem.Split(" "c)(3).ToString.Contains("Absent") Then
+                                        totalHours1 += oItem.Split(" "c)(3).Split(":")(0)
+                                        totalMinutes1 += oItem.Split(" "c)(3).Split(":")(1)
+                                        totalseconds1 += oItem.Split(" "c)(3).Split(":")(2)
+                                        'x += TimeSpan.Parse(oItem.Split(" "c)(3).ToString)
+                                    End If
                                 End If
                                 OffS1 = OffS1 + 1
                             End If
