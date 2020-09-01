@@ -1,3 +1,3 @@
 # Time-Attendance-Filter
 
-To help access system to calculate working hours by doing time attendance
+Help access system to calculate working hours by doing time attendance
