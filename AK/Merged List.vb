@@ -28,7 +28,25 @@ Public Class Merged_List
         Label9.Text = shkurt1
         Label9.ForeColor = Color.ForestGreen
     End Sub
+
+
+
+
     Private Sub Merged_List_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+
+        If My.Settings.list2.Count = 0 Then
+        Else
+            Dim strings2(My.Settings.list2.Count - 1) As String
+            My.Settings.list2.CopyTo(strings2, 0)
+            If strings2.Contains("Test") Then
+            Else
+                ListBox1.Items.AddRange(strings2)
+            End If
+        End If
+
+
+
         If Form1.OriginCheckBox2.Checked = True Then
             OriginCheckBox2.Checked = True
             TextBox2.Text = Form1.TextBox2.Text
@@ -370,6 +388,12 @@ Public Class Merged_List
     Private Sub Merged_List_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         Second_List.WindowState = FormWindowState.Normal
         Second_List.OriginCheckBox4.Checked = False
+
+        Dim strings1(ListBox1.Items.Count - 1) As String
+        ListBox1.Items.CopyTo(strings1, 0)
+        My.Settings.list2 = New Specialized.StringCollection
+        My.Settings.list2.AddRange(strings1)
+        My.Settings.Save()
     End Sub
     Private Sub Label24_Click(sender As Object, e As EventArgs) Handles Label24.Click
         Me.Close()
@@ -390,6 +414,7 @@ Public Class Merged_List
         End If
     End Sub
     Private Sub OriginButton4_Click(sender As Object, e As EventArgs) Handles OriginButton4.Click
+        'ListBox1.Items.Clear()
         SaveFileDialog1.Filter = "TXT Files (*.txt*)|*.txt"
         If SaveFileDialog1.ShowDialog = Forms.DialogResult.OK _
        Then
@@ -401,6 +426,42 @@ Public Class Merged_List
             MsgBox("List Exported!", MsgBoxStyle.Information)
         End If
     End Sub
+
+
+
+    Private Sub ListBox1_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles ListBox1.DragEnter
+        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
+            e.Effect = DragDropEffects.All
+        End If
+    End Sub
+    Dim path As String
+    Private Sub ListBox1_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles ListBox1.DragDrop
+        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
+            Dim MyFiles() As String
+            Dim i As Integer
+            ' Assign the files to an array.
+            MyFiles = e.Data.GetData(DataFormats.FileDrop)
+            ' Loop through the array and add the files to the list.
+            For i = 0 To MyFiles.Length - 1
+                path = (MyFiles(i))
+            Next
+            Dim sr As StreamReader = New StreamReader(path)
+            Dim strLine As String
+            Do While sr.Peek() >= 0
+                strLine = sr.ReadLine
+
+                ListBox1.Items.Add(strLine)
+
+            Loop
+            sr.Close()
+        End If
+
+    End Sub
+
+    Private Sub OriginTheme2_Click(sender As Object, e As EventArgs) Handles OriginTheme2.Click
+
+    End Sub
+
     Private Sub OriginButton6_Click(sender As Object, e As EventArgs) Handles OriginButton6.Click
         If Label9.Text = "No excel file loaded..." Then
             MsgBox("Load excel file first!", MsgBoxStyle.Information)
@@ -432,7 +493,7 @@ Public Class Merged_List
                             xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Borders.LineStyle = XlLineStyle.xlContinuous
                             'xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(2) & " " & oItem.Split(" "c)(3)
                             If OriginCheckBox1.Checked = True Then
-                                If oItem.Split(" "c)(3).Contains("Absent") Then
+                                If oItem.Split(" "c)(3).Contains("08:00:00") Then
                                     xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Interior.ColorIndex = 3
                                 End If
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(3).Replace("*Absent", "")
@@ -555,7 +616,7 @@ Public Class Merged_List
                             xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Interior.ColorIndex = 15
                             xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Borders.LineStyle = XlLineStyle.xlContinuous
                             If OriginCheckBox1.Checked = True Then
-                                If oItem.Split(" "c)(3).Contains("Absent") Then
+                                If oItem.Split(" "c)(3).Contains("08:00:00") Then
                                     xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Interior.ColorIndex = 3
                                 End If
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(3).Replace("*Absent", "")
@@ -675,12 +736,12 @@ Public Class Merged_List
                             If emer.Contains(nn(index)) And emer.Length = nn(index).Length Then
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).ColumnWidth = 23
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(0, OffS2).Value = "Hours ↓"
-                                xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Value = nn(index)
+                                xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Value = nn(index) & " (" & ListBox1.Items.Item(index).ToString.Split(" "c)(2).ToString & ")"
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Interior.ColorIndex = 15
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Borders.LineStyle = XlLineStyle.xlContinuous
                                 'xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(2) & " " & oItem.Split(" "c)(3)
                                 If OriginCheckBox1.Checked = True Then
-                                    If oItem.Split(" "c)(3).Contains("Absent") Then
+                                    If oItem.Split(" "c)(3).Contains("08:00:00") Then
                                         xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Interior.ColorIndex = 3
                                     End If
                                     xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(3).Replace("*Absent", "")
@@ -807,7 +868,7 @@ Public Class Merged_List
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Interior.ColorIndex = 15
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Borders.LineStyle = XlLineStyle.xlContinuous
                                 If OriginCheckBox1.Checked = True Then
-                                    If oItem.Split(" "c)(3).Contains("Absent") Then
+                                    If oItem.Split(" "c)(3).Contains("08:00:00") Then
                                         xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Interior.ColorIndex = 3
                                     End If
                                     xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(3).Replace("*Absent", "")

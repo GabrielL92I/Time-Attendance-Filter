@@ -23,10 +23,22 @@ Partial Class Merged_List
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Merged_List))
-        Me.OriginTheme1 = New Time_Attendance_Filter.OriginTheme()
+        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.OriginTheme2 = New Time_Attendance_Filter.OriginTheme()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.OriginButton4 = New Time_Attendance_Filter.OriginButton()
+        Me.OriginButton2 = New Time_Attendance_Filter.OriginButton()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.OriginButton1 = New Time_Attendance_Filter.OriginButton()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.Label22 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.OriginCheckBox1 = New Time_Attendance_Filter.OriginCheckBox()
         Me.OriginRadioButton2 = New Time_Attendance_Filter.OriginRadioButton()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.OriginButton6 = New Time_Attendance_Filter.OriginButton()
@@ -49,42 +61,164 @@ Partial Class Merged_List
         Me.Label4 = New System.Windows.Forms.Label()
         Me.ListBox5 = New System.Windows.Forms.ListBox()
         Me.ListBox4 = New System.Windows.Forms.ListBox()
-        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.OriginTheme2 = New Time_Attendance_Filter.OriginTheme()
-        Me.OriginButton4 = New Time_Attendance_Filter.OriginButton()
-        Me.OriginButton2 = New Time_Attendance_Filter.OriginButton()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.OriginButton1 = New Time_Attendance_Filter.OriginButton()
-        Me.Label25 = New System.Windows.Forms.Label()
-        Me.Label24 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.OriginCheckBox1 = New Time_Attendance_Filter.OriginCheckBox()
+        Me.OriginTheme1 = New Time_Attendance_Filter.OriginTheme()
+        Me.OriginTheme2.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
-        Me.OriginTheme2.SuspendLayout()
         Me.SuspendLayout()
         '
-        'OriginTheme1
+        'Label10
         '
-        Me.OriginTheme1.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer))
-        Me.OriginTheme1.BorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.OriginTheme1.Customization = "JiYn//////8="
-        Me.OriginTheme1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.OriginTheme1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.OriginTheme1.Image = Nothing
-        Me.OriginTheme1.Location = New System.Drawing.Point(0, 0)
-        Me.OriginTheme1.Movable = True
-        Me.OriginTheme1.Name = "OriginTheme1"
-        Me.OriginTheme1.NoRounding = False
-        Me.OriginTheme1.Sizable = True
-        Me.OriginTheme1.Size = New System.Drawing.Size(669, 825)
-        Me.OriginTheme1.SmartBounds = True
-        Me.OriginTheme1.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation
-        Me.OriginTheme1.TabIndex = 0
-        Me.OriginTheme1.Text = "OriginTheme1"
-        Me.OriginTheme1.TransparencyKey = System.Drawing.Color.Fuchsia
-        Me.OriginTheme1.Transparent = False
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(533, 8)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(10, 13)
+        Me.Label10.TabIndex = 46
+        Me.Label10.Text = "-"
+        Me.Label10.Visible = False
+        '
+        'OriginTheme2
+        '
+        Me.OriginTheme2.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer))
+        Me.OriginTheme2.BorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.OriginTheme2.Controls.Add(Me.Label2)
+        Me.OriginTheme2.Controls.Add(Me.ListBox1)
+        Me.OriginTheme2.Controls.Add(Me.OriginButton4)
+        Me.OriginTheme2.Controls.Add(Me.OriginButton2)
+        Me.OriginTheme2.Controls.Add(Me.Label1)
+        Me.OriginTheme2.Controls.Add(Me.OriginButton1)
+        Me.OriginTheme2.Controls.Add(Me.Label25)
+        Me.OriginTheme2.Controls.Add(Me.Label24)
+        Me.OriginTheme2.Controls.Add(Me.Label5)
+        Me.OriginTheme2.Controls.Add(Me.Label22)
+        Me.OriginTheme2.Controls.Add(Me.Label17)
+        Me.OriginTheme2.Controls.Add(Me.GroupBox4)
+        Me.OriginTheme2.Controls.Add(Me.GroupBox2)
+        Me.OriginTheme2.Controls.Add(Me.Label11)
+        Me.OriginTheme2.Controls.Add(Me.ListBox6)
+        Me.OriginTheme2.Controls.Add(Me.Label4)
+        Me.OriginTheme2.Controls.Add(Me.ListBox5)
+        Me.OriginTheme2.Controls.Add(Me.ListBox4)
+        Me.OriginTheme2.Customization = "JiYn//////8="
+        Me.OriginTheme2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.OriginTheme2.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.OriginTheme2.Image = Nothing
+        Me.OriginTheme2.Location = New System.Drawing.Point(0, 0)
+        Me.OriginTheme2.Movable = True
+        Me.OriginTheme2.Name = "OriginTheme2"
+        Me.OriginTheme2.NoRounding = False
+        Me.OriginTheme2.Sizable = False
+        Me.OriginTheme2.Size = New System.Drawing.Size(825, 825)
+        Me.OriginTheme2.SmartBounds = True
+        Me.OriginTheme2.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation
+        Me.OriginTheme2.TabIndex = 47
+        Me.OriginTheme2.Text = "OriginTheme1"
+        Me.OriginTheme2.TransparencyKey = System.Drawing.Color.Fuchsia
+        Me.OriginTheme2.Transparent = False
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(660, 191)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(45, 15)
+        Me.Label2.TabIndex = 76
+        Me.Label2.Text = "Groups"
+        '
+        'ListBox1
+        '
+        Me.ListBox1.AllowDrop = True
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.ItemHeight = 15
+        Me.ListBox1.Location = New System.Drawing.Point(663, 208)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(150, 574)
+        Me.ListBox1.Sorted = True
+        Me.ListBox1.TabIndex = 75
+        '
+        'OriginButton4
+        '
+        Me.OriginButton4.Customization = "AKX/////////////"
+        Me.OriginButton4.Font = New System.Drawing.Font("Verdana", 8.0!)
+        Me.OriginButton4.Image = Nothing
+        Me.OriginButton4.Location = New System.Drawing.Point(408, 183)
+        Me.OriginButton4.Name = "OriginButton4"
+        Me.OriginButton4.NoRounding = False
+        Me.OriginButton4.Size = New System.Drawing.Size(75, 23)
+        Me.OriginButton4.TabIndex = 74
+        Me.OriginButton4.Text = "Export List"
+        Me.OriginButton4.Transparent = False
+        '
+        'OriginButton2
+        '
+        Me.OriginButton2.Customization = "AKX/////////////"
+        Me.OriginButton2.Font = New System.Drawing.Font("Verdana", 8.0!)
+        Me.OriginButton2.Image = Nothing
+        Me.OriginButton2.Location = New System.Drawing.Point(177, 183)
+        Me.OriginButton2.Name = "OriginButton2"
+        Me.OriginButton2.NoRounding = False
+        Me.OriginButton2.Size = New System.Drawing.Size(75, 23)
+        Me.OriginButton2.TabIndex = 73
+        Me.OriginButton2.Text = "Export List"
+        Me.OriginButton2.Transparent = False
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.White
+        Me.Label1.Location = New System.Drawing.Point(795, 6)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(12, 15)
+        Me.Label1.TabIndex = 72
+        Me.Label1.Text = "-"
+        '
+        'OriginButton1
+        '
+        Me.OriginButton1.Customization = "AKX/////////////"
+        Me.OriginButton1.Font = New System.Drawing.Font("Verdana", 8.0!)
+        Me.OriginButton1.Image = Nothing
+        Me.OriginButton1.Location = New System.Drawing.Point(12, 788)
+        Me.OriginButton1.Name = "OriginButton1"
+        Me.OriginButton1.NoRounding = False
+        Me.OriginButton1.Size = New System.Drawing.Size(801, 27)
+        Me.OriginButton1.TabIndex = 71
+        Me.OriginButton1.Text = "Merge & Calculate"
+        Me.OriginButton1.Transparent = False
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Location = New System.Drawing.Point(616, 181)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(47, 15)
+        Me.Label25.TabIndex = 70
+        Me.Label25.Text = "Label25"
+        Me.Label25.Visible = False
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.BackColor = System.Drawing.Color.Transparent
+        Me.Label24.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label24.ForeColor = System.Drawing.Color.White
+        Me.Label24.Location = New System.Drawing.Point(806, 7)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(14, 15)
+        Me.Label24.TabIndex = 69
+        Me.Label24.Text = "X"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(486, 190)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(70, 15)
+        Me.Label5.TabIndex = 68
+        Me.Label5.Text = "Employees: "
         '
         'Label22
         '
@@ -121,10 +255,24 @@ Partial Class Merged_List
         Me.GroupBox4.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox4.Location = New System.Drawing.Point(12, 28)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(645, 96)
+        Me.GroupBox4.Size = New System.Drawing.Size(801, 96)
         Me.GroupBox4.TabIndex = 59
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Export"
+        '
+        'OriginCheckBox1
+        '
+        Me.OriginCheckBox1.Checked = False
+        Me.OriginCheckBox1.Customization = "AAAA/+bm5v/S0tL/5ubm/6qqqv/19fX/9fX1/w=="
+        Me.OriginCheckBox1.Font = New System.Drawing.Font("Verdana", 8.0!)
+        Me.OriginCheckBox1.Image = Nothing
+        Me.OriginCheckBox1.Location = New System.Drawing.Point(609, 73)
+        Me.OriginCheckBox1.Name = "OriginCheckBox1"
+        Me.OriginCheckBox1.NoRounding = False
+        Me.OriginCheckBox1.Size = New System.Drawing.Size(176, 17)
+        Me.OriginCheckBox1.TabIndex = 67
+        Me.OriginCheckBox1.Text = "Replace ""Absent"" with 8h"
+        Me.OriginCheckBox1.Transparent = False
         '
         'OriginRadioButton2
         '
@@ -156,7 +304,7 @@ Partial Class Merged_List
         Me.OriginButton6.Customization = "AKX/////////////"
         Me.OriginButton6.Font = New System.Drawing.Font("Verdana", 8.0!)
         Me.OriginButton6.Image = Nothing
-        Me.OriginButton6.Location = New System.Drawing.Point(448, 43)
+        Me.OriginButton6.Location = New System.Drawing.Point(596, 43)
         Me.OriginButton6.Name = "OriginButton6"
         Me.OriginButton6.NoRounding = False
         Me.OriginButton6.Size = New System.Drawing.Size(191, 27)
@@ -185,7 +333,7 @@ Partial Class Merged_List
         Me.OriginButton3.Customization = "AKX/////////////"
         Me.OriginButton3.Font = New System.Drawing.Font("Verdana", 8.0!)
         Me.OriginButton3.Image = Nothing
-        Me.OriginButton3.Location = New System.Drawing.Point(448, 13)
+        Me.OriginButton3.Location = New System.Drawing.Point(596, 13)
         Me.OriginButton3.Name = "OriginButton3"
         Me.OriginButton3.NoRounding = False
         Me.OriginButton3.Size = New System.Drawing.Size(191, 27)
@@ -253,7 +401,7 @@ Partial Class Merged_List
         Me.GroupBox2.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.Location = New System.Drawing.Point(12, 130)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(645, 48)
+        Me.GroupBox2.Size = New System.Drawing.Size(801, 48)
         Me.GroupBox2.TabIndex = 57
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Options"
@@ -364,155 +512,32 @@ Partial Class Merged_List
         Me.ListBox4.Size = New System.Drawing.Size(240, 574)
         Me.ListBox4.TabIndex = 50
         '
-        'Label10
+        'OriginTheme1
         '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(533, 8)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(10, 13)
-        Me.Label10.TabIndex = 46
-        Me.Label10.Text = "-"
-        Me.Label10.Visible = False
-        '
-        'OriginTheme2
-        '
-        Me.OriginTheme2.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer))
-        Me.OriginTheme2.BorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.OriginTheme2.Controls.Add(Me.OriginButton4)
-        Me.OriginTheme2.Controls.Add(Me.OriginButton2)
-        Me.OriginTheme2.Controls.Add(Me.Label1)
-        Me.OriginTheme2.Controls.Add(Me.OriginButton1)
-        Me.OriginTheme2.Controls.Add(Me.Label25)
-        Me.OriginTheme2.Controls.Add(Me.Label24)
-        Me.OriginTheme2.Controls.Add(Me.Label5)
-        Me.OriginTheme2.Controls.Add(Me.Label22)
-        Me.OriginTheme2.Controls.Add(Me.Label17)
-        Me.OriginTheme2.Controls.Add(Me.GroupBox4)
-        Me.OriginTheme2.Controls.Add(Me.GroupBox2)
-        Me.OriginTheme2.Controls.Add(Me.Label11)
-        Me.OriginTheme2.Controls.Add(Me.ListBox6)
-        Me.OriginTheme2.Controls.Add(Me.Label4)
-        Me.OriginTheme2.Controls.Add(Me.ListBox5)
-        Me.OriginTheme2.Controls.Add(Me.ListBox4)
-        Me.OriginTheme2.Customization = "JiYn//////8="
-        Me.OriginTheme2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.OriginTheme2.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.OriginTheme2.Image = Nothing
-        Me.OriginTheme2.Location = New System.Drawing.Point(0, 0)
-        Me.OriginTheme2.Movable = True
-        Me.OriginTheme2.Name = "OriginTheme2"
-        Me.OriginTheme2.NoRounding = False
-        Me.OriginTheme2.Sizable = False
-        Me.OriginTheme2.Size = New System.Drawing.Size(669, 825)
-        Me.OriginTheme2.SmartBounds = True
-        Me.OriginTheme2.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation
-        Me.OriginTheme2.TabIndex = 47
-        Me.OriginTheme2.Text = "OriginTheme1"
-        Me.OriginTheme2.TransparencyKey = System.Drawing.Color.Fuchsia
-        Me.OriginTheme2.Transparent = False
-        '
-        'OriginButton4
-        '
-        Me.OriginButton4.Customization = "AKX/////////////"
-        Me.OriginButton4.Font = New System.Drawing.Font("Verdana", 8.0!)
-        Me.OriginButton4.Image = Nothing
-        Me.OriginButton4.Location = New System.Drawing.Point(408, 183)
-        Me.OriginButton4.Name = "OriginButton4"
-        Me.OriginButton4.NoRounding = False
-        Me.OriginButton4.Size = New System.Drawing.Size(75, 23)
-        Me.OriginButton4.TabIndex = 74
-        Me.OriginButton4.Text = "Export List"
-        Me.OriginButton4.Transparent = False
-        '
-        'OriginButton2
-        '
-        Me.OriginButton2.Customization = "AKX/////////////"
-        Me.OriginButton2.Font = New System.Drawing.Font("Verdana", 8.0!)
-        Me.OriginButton2.Image = Nothing
-        Me.OriginButton2.Location = New System.Drawing.Point(177, 183)
-        Me.OriginButton2.Name = "OriginButton2"
-        Me.OriginButton2.NoRounding = False
-        Me.OriginButton2.Size = New System.Drawing.Size(75, 23)
-        Me.OriginButton2.TabIndex = 73
-        Me.OriginButton2.Text = "Export List"
-        Me.OriginButton2.Transparent = False
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.White
-        Me.Label1.Location = New System.Drawing.Point(639, 6)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(12, 15)
-        Me.Label1.TabIndex = 72
-        Me.Label1.Text = "-"
-        '
-        'OriginButton1
-        '
-        Me.OriginButton1.Customization = "AKX/////////////"
-        Me.OriginButton1.Font = New System.Drawing.Font("Verdana", 8.0!)
-        Me.OriginButton1.Image = Nothing
-        Me.OriginButton1.Location = New System.Drawing.Point(12, 788)
-        Me.OriginButton1.Name = "OriginButton1"
-        Me.OriginButton1.NoRounding = False
-        Me.OriginButton1.Size = New System.Drawing.Size(645, 27)
-        Me.OriginButton1.TabIndex = 71
-        Me.OriginButton1.Text = "Merge & Calculate"
-        Me.OriginButton1.Transparent = False
-        '
-        'Label25
-        '
-        Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(616, 181)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(47, 15)
-        Me.Label25.TabIndex = 70
-        Me.Label25.Text = "Label25"
-        Me.Label25.Visible = False
-        '
-        'Label24
-        '
-        Me.Label24.AutoSize = True
-        Me.Label24.BackColor = System.Drawing.Color.Transparent
-        Me.Label24.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label24.ForeColor = System.Drawing.Color.White
-        Me.Label24.Location = New System.Drawing.Point(650, 7)
-        Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(14, 15)
-        Me.Label24.TabIndex = 69
-        Me.Label24.Text = "X"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(486, 190)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(70, 15)
-        Me.Label5.TabIndex = 68
-        Me.Label5.Text = "Employees: "
-        '
-        'OriginCheckBox1
-        '
-        Me.OriginCheckBox1.Checked = False
-        Me.OriginCheckBox1.Customization = "AAAA/+bm5v/S0tL/5ubm/6qqqv/19fX/9fX1/w=="
-        Me.OriginCheckBox1.Font = New System.Drawing.Font("Verdana", 8.0!)
-        Me.OriginCheckBox1.Image = Nothing
-        Me.OriginCheckBox1.Location = New System.Drawing.Point(461, 73)
-        Me.OriginCheckBox1.Name = "OriginCheckBox1"
-        Me.OriginCheckBox1.NoRounding = False
-        Me.OriginCheckBox1.Size = New System.Drawing.Size(176, 17)
-        Me.OriginCheckBox1.TabIndex = 67
-        Me.OriginCheckBox1.Text = "Replace ""Absent"" with 8h"
-        Me.OriginCheckBox1.Transparent = False
+        Me.OriginTheme1.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer))
+        Me.OriginTheme1.BorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.OriginTheme1.Customization = "JiYn//////8="
+        Me.OriginTheme1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.OriginTheme1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.OriginTheme1.Image = Nothing
+        Me.OriginTheme1.Location = New System.Drawing.Point(0, 0)
+        Me.OriginTheme1.Movable = True
+        Me.OriginTheme1.Name = "OriginTheme1"
+        Me.OriginTheme1.NoRounding = False
+        Me.OriginTheme1.Sizable = True
+        Me.OriginTheme1.Size = New System.Drawing.Size(825, 825)
+        Me.OriginTheme1.SmartBounds = True
+        Me.OriginTheme1.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation
+        Me.OriginTheme1.TabIndex = 0
+        Me.OriginTheme1.Text = "OriginTheme1"
+        Me.OriginTheme1.TransparencyKey = System.Drawing.Color.Fuchsia
+        Me.OriginTheme1.Transparent = False
         '
         'Merged_List
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(669, 825)
+        Me.ClientSize = New System.Drawing.Size(825, 825)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.OriginTheme2)
         Me.Controls.Add(Me.OriginTheme1)
@@ -521,12 +546,12 @@ Partial Class Merged_List
         Me.Name = "Merged_List"
         Me.Text = "Merged List"
         Me.TransparencyKey = System.Drawing.Color.Fuchsia
+        Me.OriginTheme2.ResumeLayout(False)
+        Me.OriginTheme2.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        Me.OriginTheme2.ResumeLayout(False)
-        Me.OriginTheme2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -569,4 +594,6 @@ Partial Class Merged_List
     Friend WithEvents OriginButton4 As OriginButton
     Friend WithEvents OriginButton2 As OriginButton
     Friend WithEvents OriginCheckBox1 As OriginCheckBox
+    Friend WithEvents ListBox1 As ListBox
+    Friend WithEvents Label2 As Label
 End Class

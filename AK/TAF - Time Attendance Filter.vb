@@ -183,6 +183,10 @@ Public Class Form1
                 ListBox5.Items.AddRange(strings1)
             End If
         End If
+
+
+
+
         Label17.Text = "(" & ListBox5.Items.Count.ToString & ")"
         Label17.ForeColor = Color.ForestGreen
         'Label5.Text = Label17.Text
@@ -210,6 +214,9 @@ Public Class Form1
         My.Settings.list = New Specialized.StringCollection
         My.Settings.list.AddRange(strings)
         My.Settings.Save()
+
+
+
     End Sub
     Public Sub ReleaseObject(ByVal obj As Object)
         Try
@@ -229,9 +236,11 @@ Public Class Form1
             MsgBox("Select the user to remove first!", MsgBoxStyle.Information)
         Else
             ListBox5.Items.RemoveAt(ListBox5.SelectedIndex)
+            Merged_List.ListBox1.Items.Remove(ListBox5.SelectedIndex)
             Label17.Text = "(" & ListBox5.Items.Count.ToString & ")"
         End If
     End Sub
+    Dim iix
     Private Sub AddEmployeeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddEmployeeToolStripMenuItem.Click
         Dim StatusDate As String
         StatusDate = InputBox("Enter the employee name here", "Employee Name", "")
@@ -240,9 +249,21 @@ Public Class Form1
             ListBox5.Items.Add(StatusDate)
             Label17.Text = "(" & ListBox5.Items.Count.ToString & ")"
         End If
+
+
+
+        Dim StatusDate1 As String
+        StatusDate1 = InputBox("Enter the employee group here", "Employee Group", "")
+        If StatusDate1 = "" Then
+        Else
+            'Merged_List.ListBox1.Items.Add(StatusDate1)
+            Merged_List.ListBox1.Items.Add(StatusDate & " " & StatusDate1)
+
+        End If
     End Sub
     Private Sub ClearListToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearListToolStripMenuItem.Click
         ListBox5.Items.Clear()
+        Merged_List.ListBox1.Items.Clear()
         Label17.Text = "(" & ListBox5.Items.Count.ToString & ")"
     End Sub
     Private Sub ExportListToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportListToolStripMenuItem.Click
