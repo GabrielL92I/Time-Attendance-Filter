@@ -427,8 +427,6 @@ Public Class Merged_List
         End If
     End Sub
 
-
-
     Private Sub ListBox1_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles ListBox1.DragEnter
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             e.Effect = DragDropEffects.All
@@ -455,13 +453,7 @@ Public Class Merged_List
             Loop
             sr.Close()
         End If
-
     End Sub
-
-    Private Sub OriginTheme2_Click(sender As Object, e As EventArgs) Handles OriginTheme2.Click
-
-    End Sub
-
     Private Sub OriginButton6_Click(sender As Object, e As EventArgs) Handles OriginButton6.Click
         If Label9.Text = "No excel file loaded..." Then
             MsgBox("Load excel file first!", MsgBoxStyle.Information)
@@ -736,7 +728,14 @@ Public Class Merged_List
                             If emer.Contains(nn(index)) And emer.Length = nn(index).Length Then
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).ColumnWidth = 23
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(0, OffS2).Value = "Hours ↓"
-                                xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Value = nn(index) & " (" & ListBox1.Items.Item(index).ToString.Split(" "c)(2).ToString & ")"
+
+                                If OriginCheckBox3.Checked = True Then
+                                    xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Value = nn(index) & " (" & ListBox1.Items.Item(index).ToString.Split(" "c)(2).ToString & ")"
+                                Else
+                                    xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Value = nn(index)
+                                End If
+
+
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Interior.ColorIndex = 15
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Borders.LineStyle = XlLineStyle.xlContinuous
                                 'xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = oItem.Split(" "c)(2) & " " & oItem.Split(" "c)(3)
@@ -864,7 +863,11 @@ Public Class Merged_List
                             If emer.Contains(nn(index)) And emer.Length = nn(index).Length Then
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).ColumnWidth = 23
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(0, OffS2).Value = "Hours ↓"
-                                xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Value = nn(index)
+                                If OriginCheckBox3.Checked = True Then
+                                    xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Value = nn(index) & " (" & ListBox1.Items.Item(index).ToString.Split(" "c)(2).ToString & ")"
+                                Else
+                                    xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Value = nn(index)
+                                End If
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Interior.ColorIndex = 15
                                 xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(1, OffS2).Borders.LineStyle = XlLineStyle.xlContinuous
                                 If OriginCheckBox1.Checked = True Then
