@@ -1012,32 +1012,7 @@ Public Class Form1
         Label13.ForeColor = Color.ForestGreen
         If Label8.Text.Length = 0 Then
         Else
-            Dim lines() As String = IO.File.ReadAllLines(Label8.Text)
-            Dim x, y, z As String
-            Dim largestday As Integer = Integer.MinValue
-            Dim smallestday As Integer = Integer.MaxValue
-            Dim largestmonth As Integer = Integer.MinValue
-            Dim smallestmonth As Integer = Integer.MaxValue
-            Dim largestyear As Integer = Integer.MinValue
-            Dim smallestyear As Integer = Integer.MaxValue
-            For Each element As String In lines
-                x = element.ToString.Split(" ")(2).Split("-")(2)
-                y = element.ToString.Split(" ")(2).Split("-")(1)
-                z = element.ToString.Split(" ")(2).Split("-")(0)
-                largestday = Math.Max(largestday, CInt(x))
-                smallestday = Math.Min(smallestday, CInt(x))
-                largestmonth = Math.Max(largestmonth, CInt(y))
-                smallestmonth = Math.Min(smallestmonth, CInt(y))
-                largestyear = Math.Max(largestyear, CInt(z))
-                smallestyear = Math.Min(smallestyear, CInt(z))
-            Next
-            Dim startdt, enddt As String
-            startdt = smallestyear & "-" & smallestmonth & "-" & smallestday
-            enddt = largestyear & "-" & largestmonth & "-" & largestday
-            DateTimePicker1.Value = startdt
-            DateTimePicker2.Value = enddt
-            DateTimePicker2.Enabled = True
-            DateTimePicker1.Enabled = True
+
         End If
     End Sub
     Private Sub OriginButton1_Click_1(sender As Object, e As EventArgs) Handles OriginButton1.Click

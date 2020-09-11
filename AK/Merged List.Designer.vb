@@ -38,6 +38,7 @@ Partial Class Merged_List
         Me.Label22 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.OriginCheckBox3 = New Time_Attendance_Filter.OriginCheckBox()
         Me.OriginCheckBox1 = New Time_Attendance_Filter.OriginCheckBox()
         Me.OriginRadioButton2 = New Time_Attendance_Filter.OriginRadioButton()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -62,7 +63,7 @@ Partial Class Merged_List
         Me.ListBox5 = New System.Windows.Forms.ListBox()
         Me.ListBox4 = New System.Windows.Forms.ListBox()
         Me.OriginTheme1 = New Time_Attendance_Filter.OriginTheme()
-        Me.OriginCheckBox3 = New Time_Attendance_Filter.OriginCheckBox()
+        Me.OriginCheckBox4 = New Time_Attendance_Filter.OriginCheckBox()
         Me.OriginTheme2.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -242,6 +243,7 @@ Partial Class Merged_List
         '
         'GroupBox4
         '
+        Me.GroupBox4.Controls.Add(Me.OriginCheckBox4)
         Me.GroupBox4.Controls.Add(Me.OriginCheckBox3)
         Me.GroupBox4.Controls.Add(Me.OriginCheckBox1)
         Me.GroupBox4.Controls.Add(Me.OriginRadioButton2)
@@ -261,6 +263,20 @@ Partial Class Merged_List
         Me.GroupBox4.TabIndex = 59
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Export"
+        '
+        'OriginCheckBox3
+        '
+        Me.OriginCheckBox3.Checked = False
+        Me.OriginCheckBox3.Customization = "AAAA/+bm5v/S0tL/5ubm/6qqqv/19fX/9fX1/w=="
+        Me.OriginCheckBox3.Font = New System.Drawing.Font("Verdana", 8.0!)
+        Me.OriginCheckBox3.Image = Nothing
+        Me.OriginCheckBox3.Location = New System.Drawing.Point(477, 73)
+        Me.OriginCheckBox3.Name = "OriginCheckBox3"
+        Me.OriginCheckBox3.NoRounding = False
+        Me.OriginCheckBox3.Size = New System.Drawing.Size(120, 17)
+        Me.OriginCheckBox3.TabIndex = 68
+        Me.OriginCheckBox3.Text = "Add group name"
+        Me.OriginCheckBox3.Transparent = False
         '
         'OriginCheckBox1
         '
@@ -535,19 +551,19 @@ Partial Class Merged_List
         Me.OriginTheme1.TransparencyKey = System.Drawing.Color.Fuchsia
         Me.OriginTheme1.Transparent = False
         '
-        'OriginCheckBox3
+        'OriginCheckBox4
         '
-        Me.OriginCheckBox3.Checked = False
-        Me.OriginCheckBox3.Customization = "AAAA/+bm5v/S0tL/5ubm/6qqqv/19fX/9fX1/w=="
-        Me.OriginCheckBox3.Font = New System.Drawing.Font("Verdana", 8.0!)
-        Me.OriginCheckBox3.Image = Nothing
-        Me.OriginCheckBox3.Location = New System.Drawing.Point(477, 73)
-        Me.OriginCheckBox3.Name = "OriginCheckBox3"
-        Me.OriginCheckBox3.NoRounding = False
-        Me.OriginCheckBox3.Size = New System.Drawing.Size(120, 17)
-        Me.OriginCheckBox3.TabIndex = 68
-        Me.OriginCheckBox3.Text = "Add group name"
-        Me.OriginCheckBox3.Transparent = False
+        Me.OriginCheckBox4.Checked = False
+        Me.OriginCheckBox4.Customization = "AAAA/+bm5v/S0tL/5ubm/6qqqv/19fX/9fX1/w=="
+        Me.OriginCheckBox4.Font = New System.Drawing.Font("Verdana", 8.0!)
+        Me.OriginCheckBox4.Image = Nothing
+        Me.OriginCheckBox4.Location = New System.Drawing.Point(385, 73)
+        Me.OriginCheckBox4.Name = "OriginCheckBox4"
+        Me.OriginCheckBox4.NoRounding = False
+        Me.OriginCheckBox4.Size = New System.Drawing.Size(77, 17)
+        Me.OriginCheckBox4.TabIndex = 69
+        Me.OriginCheckBox4.Text = "Average?"
+        Me.OriginCheckBox4.Transparent = False
         '
         'Merged_List
         '
@@ -613,4 +629,5 @@ Partial Class Merged_List
     Friend WithEvents ListBox1 As ListBox
     Friend WithEvents Label2 As Label
     Friend WithEvents OriginCheckBox3 As OriginCheckBox
+    Friend WithEvents OriginCheckBox4 As OriginCheckBox
 End Class

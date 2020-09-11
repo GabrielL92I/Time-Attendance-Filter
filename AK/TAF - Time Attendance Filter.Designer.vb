@@ -757,7 +757,6 @@ Partial Class Form1
         'DateTimePicker1
         '
         Me.DateTimePicker1.CustomFormat = "yyyy-MM-dd"
-        Me.DateTimePicker1.Enabled = False
         Me.DateTimePicker1.Location = New System.Drawing.Point(73, 17)
         Me.DateTimePicker1.Name = "DateTimePicker1"
         Me.DateTimePicker1.Size = New System.Drawing.Size(103, 23)
@@ -765,7 +764,6 @@ Partial Class Form1
         '
         'DateTimePicker2
         '
-        Me.DateTimePicker2.Enabled = False
         Me.DateTimePicker2.Location = New System.Drawing.Point(246, 16)
         Me.DateTimePicker2.Name = "DateTimePicker2"
         Me.DateTimePicker2.Size = New System.Drawing.Size(98, 23)

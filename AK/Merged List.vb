@@ -556,7 +556,17 @@ Public Class Merged_List
                             Dim timeElapsed As String = CType(hours.ToString("d2"), String) & ":" & CType(minutes.ToString("d2"), String)
                             average = timeElapsed
                         End If
-                        xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = totalTime1.ToString & " " & "(" & average & ")"
+
+
+                        If OriginCheckBox4.Checked = True Then
+                            xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = totalTime1.ToString & " " & "(" & average & ")"
+                        Else
+                            xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = totalTime1.ToString
+                        End If
+
+
+
+
                         xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 2).Value = ComboBox1.SelectedItem & "(" & nonholiday & " weekdays" & ")"
                     End If
                     xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Interior.ColorIndex = 50
@@ -677,7 +687,11 @@ Public Class Merged_List
                             average = timeElapsed
                         End If
                         xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 2).Value = ComboBox1.SelectedItem & "(" & nonholiday & " weekdays" & ")"
-                        xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = totalTime1.ToString & " " & "(" & average & ")"
+                        If OriginCheckBox4.Checked = True Then
+                            xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = totalTime1.ToString & " " & "(" & average & ")"
+                        Else
+                            xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = totalTime1.ToString
+                        End If
                     End If
                     xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Interior.ColorIndex = 50
                     xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Borders.LineStyle = XlLineStyle.xlContinuous
@@ -812,7 +826,11 @@ Public Class Merged_List
                                 Dim timeElapsed As String = CType(hours.ToString("d2"), String) & ":" & CType(minutes.ToString("d2"), String)
                                 average = timeElapsed
                             End If
-                            xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = totalTime1.ToString & " " & "(" & average & ")"
+                            If OriginCheckBox4.Checked = True Then
+                                xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = totalTime1.ToString & " " & "(" & average & ")"
+                            Else
+                                xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = totalTime1.ToString
+                            End If
                             xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 2).Value = ComboBox1.SelectedItem & "(" & nonholiday & " weekdays" & ")"
                         End If
                         x = Nothing
@@ -940,7 +958,11 @@ Public Class Merged_List
                                 average = timeElapsed
                             End If
                             xlBook.Sheets(ComboBox1.SelectedItem).Cells(2, 2).Value = ComboBox1.SelectedItem & "(" & nonholiday & " weekdays" & ")"
-                            xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = totalTime1.ToString & " " & "(" & average & ")"
+                            If OriginCheckBox4.Checked = True Then
+                                xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = totalTime1.ToString & " " & "(" & average & ")"
+                            Else
+                                xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Value = totalTime1.ToString
+                            End If
                         End If
                         xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Interior.ColorIndex = 50
                         xlBook.Sheets(ComboBox1.SelectedItem).Range("C1").Offset(OffS1, OffS2).Borders.LineStyle = XlLineStyle.xlContinuous
