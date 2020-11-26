@@ -265,6 +265,11 @@ Public Class Form1
         ListBox5.Items.Clear()
         Merged_List.ListBox1.Items.Clear()
         Label17.Text = "(" & ListBox5.Items.Count.ToString & ")"
+        Dim strings1(Merged_List.ListBox1.Items.Count - 1) As String
+        Merged_List.ListBox1.Items.CopyTo(strings1, 0)
+        My.Settings.list2 = New Specialized.StringCollection
+        My.Settings.list2.AddRange(strings1)
+        My.Settings.Save()
     End Sub
     Private Sub ExportListToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportListToolStripMenuItem.Click
         SaveFileDialog1.Filter = "TXT Files (*.txt*)|*.txt"
@@ -1043,9 +1048,9 @@ Public Class Form1
                     y = strLine.Split(" ")(0) & " " & strLine.Split(" ")(1) & " " & strLine.Split(" ")(2).Replace("/", "-") & " " & strLine.Split(" ")(3) & " " & strLine.Split(" ")(4)
                 End If
                 If OriginCheckBox1.Checked = True Then
-                    sm = y.Replace("IN", "C/In").Replace("OUT", "C/Out").Replace(TextBox1.Text, Label12.Text).Replace(TextBox3.Text, Label15.Text)
+                    sm = y.Replace("IN", "C/In").Replace("OUT", "C/Out").Replace(TextBox1.Text, Label12.Text).Replace(TextBox3.Text, Label15.Text).Replace("Ã§", "ç").Replace("Ã‡", "Ç")
                 Else
-                    sm = y.Replace("IN", "C/In").Replace("OUT", "C/Out").Replace("Ã§", "ç")
+                    sm = y.Replace("IN", "C/In").Replace("OUT", "C/Out").Replace("Ã§", "ç").Replace("Ã‡", "Ç")
                 End If
                 If TextBox4.Text = "dd/MM/yyyy" Or TextBox4.Text = "dd-MM-yyyy" Then
                     Dim date2 As Date = Convert.ToDateTime(sm.Split(" ")(2))
@@ -1057,7 +1062,7 @@ Public Class Form1
                     fdate = sm.Split(" ")(0) & " " & sm.Split(" ")(1) & " " & sm.Split(" ")(2) & " " & sm.Split(" ")(3) & " " & sm.Split(" ")(4)
                 End If
                 If OriginCheckBox3.Checked = True Then
-                    reve = fdate.Replace(TextBox5.Text, "C/In1").Replace(TextBox6.Text, TextBox5.Text).Replace("C/In1", TextBox6.Text).Replace("�", "ç")
+                    reve = fdate.Replace(TextBox5.Text, "C/In1").Replace(TextBox6.Text, TextBox5.Text).Replace("C/In1", TextBox6.Text).Replace("�", "ç").Replace("Ã§", "ç").Replace("Ã‡", "Ç")
                 Else
                     reve = fdate
                 End If
