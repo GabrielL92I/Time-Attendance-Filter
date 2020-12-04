@@ -269,7 +269,7 @@ Public Class Form1
         Merged_List.ListBox1.Items.CopyTo(strings1, 0)
         My.Settings.list2 = New Specialized.StringCollection
         My.Settings.list2.AddRange(strings1)
-        My.Settings.Save()
+        My.Settings.Save() '
     End Sub
     Private Sub ExportListToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportListToolStripMenuItem.Click
         SaveFileDialog1.Filter = "TXT Files (*.txt*)|*.txt"
